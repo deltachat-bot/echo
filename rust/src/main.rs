@@ -112,8 +112,8 @@ fn main() {
         panic!("no mailpw ENV var specified");
     }
 
-    let interupted = Arc::new(atomic::AtomicBool::new(false));
-    let i = interupted.clone();
+    let interrupted = Arc::new(atomic::AtomicBool::new(false));
+    let i = interrupted.clone();
 
     ctrlc::set_handler(move || {
         i.store(true, atomic::Ordering::SeqCst);
@@ -122,7 +122,7 @@ fn main() {
     ctx.configure();
 
     // wait for ctrl+c
-    while !interupted.load(atomic::Ordering::SeqCst) {
+    while !interrupted.load(atomic::Ordering::SeqCst) {
        thread::sleep(std::time::Duration::from_millis(100));
     }
 
