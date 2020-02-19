@@ -1,0 +1,15 @@
+{
+  "name": "deltachat-echo-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true,
+  "dependencies": {
+    "@types/node": "^13.7.2",
+    "deltachat-node": "^1.0.0-beta.26",
+    "rc": "^1.2.8"
+  }
+}
