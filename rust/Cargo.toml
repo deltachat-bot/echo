@@ -8,3 +8,4 @@ edition = "2018"
 
 [dependencies]
 deltachat = { git = "https://github.com/deltachat/deltachat-core-rust", rev = "3a25d6b" }
+ctrlc = "3.1.4"

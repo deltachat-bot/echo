@@ -1,11 +1,10 @@
 use std::env::{current_dir, vars};
-use std::sync::{Arc, RwLock};
+use std::sync::{Arc, RwLock, atomic};
 use std::thread;
 
 use deltachat::chat::*;
 use deltachat::config;
-use deltachat::configure;
-use deltachat::constants::{Chattype, Viewtype};
+use deltachat::constants::{Chattype, Viewtype, DC_CONTACT_ID_SELF};
 use deltachat::context::*;
 use deltachat::error::Error;
 use deltachat::job::{
@@ -15,9 +14,14 @@ use deltachat::job::{
 use deltachat::message::*;
 use deltachat::Event;
 
-fn handleMessage(_ctx: &Context, chat_id: ChatId, msg_id: MsgId) -> Result<(), Error> {
+fn handle_message(_ctx: &Context, chat_id: ChatId, msg_id: MsgId) -> Result<(), Error> {
     let chat = Chat::load_from_db(_ctx, chat_id)?;
     let msg = Message::load_from_db(_ctx, msg_id)?;
+
+    if msg.get_from_id() == DC_CONTACT_ID_SELF {
+        // prevent loop (don't react to own messages)
+        return Ok(());
+    }
 
     println!(
         "recieved message '{}' in chat with type {:?}",
@@ -28,7 +32,7 @@ fn handleMessage(_ctx: &Context, chat_id: ChatId, msg_id: MsgId) -> Result<(), E
     if chat.get_type() == Chattype::Single {
         let mut message = Message::new(Viewtype::Text);
         message.set_text(msg.get_text());
-        send_msg(_ctx, chat_id, &mut message);
+        send_msg(_ctx, chat_id, &mut message)?;
     }
 
     Ok(())
@@ -44,9 +48,12 @@ fn cb(_ctx: &Context, event: Event) {
         Event::Info(msg) | Event::Warning(msg) | Event::Error(msg) | Event::ErrorNetwork(msg) => {
             println!("  {}", msg);
         }
-        Event::MsgsChanged { chat_id, msg_id } => {
-            handleMessage(_ctx, chat_id, msg_id);
-        }
+        Event::MsgsChanged { chat_id, msg_id } => match handle_message(_ctx, chat_id, msg_id) {
+            Err(err) => {
+                print!("{}", err);
+            }
+            Ok(_val) => {}
+        },
         ev => {
             println!("[EV] {:?}", ev);
         }
@@ -55,7 +62,7 @@ fn cb(_ctx: &Context, event: Event) {
 
 fn main() {
     let dbdir = current_dir().unwrap().join("deltachat-db");
-    std::fs::create_dir_all(dbdir).unwrap();
+    std::fs::create_dir_all(dbdir.clone()).unwrap();
     let dbfile = dbdir.join("db.sqlite");
     println!("creating database {:?}", dbfile);
     let ctx =
@@ -67,7 +74,7 @@ fn main() {
     let ctx = Arc::new(ctx);
     let ctx1 = ctx.clone();
     let r1 = running.clone();
-    let t1 = thread::spawn(move || {
+    let _t1 = thread::spawn(move || {
         while *r1.read().unwrap() {
             perform_inbox_jobs(&ctx1);
             if *r1.read().unwrap() {
@@ -82,7 +89,7 @@ fn main() {
 
     let ctx1 = ctx.clone();
     let r1 = running.clone();
-    let t2 = thread::spawn(move || {
+    let _t2 = thread::spawn(move || {
         while *r1.read().unwrap() {
             perform_smtp_jobs(&ctx1);
             if *r1.read().unwrap() {
@@ -93,30 +100,40 @@ fn main() {
 
     println!("configuring");
 
-    if let Some(addr) = vars().find(|&key| key.0 == "addr") {
+    if let Some(addr) = vars().find(|key| key.0 == "addr") {
         ctx.set_config(config::Config::Addr, Some(&addr.1)).unwrap();
     } else {
         panic!("no addr ENV var specified");
     }
 
-    if let Some(pw) = vars().find(|&key| key.0 == "mailpw") {
+    if let Some(pw) = vars().find(|key| key.0 == "mailpw") {
         ctx.set_config(config::Config::MailPw, Some(&pw.1)).unwrap();
     } else {
         panic!("no mailpw ENV var specified");
     }
 
-    configure::configure(&ctx);
+    let interupted = Arc::new(atomic::AtomicBool::new(false));
+    let i = interupted.clone();
 
-    //     thread::sleep(time::Duration::from_millis(7000));
+    ctrlc::set_handler(move || {
+        i.store(true, atomic::Ordering::SeqCst);
+    }).expect("Error setting Ctrl-C handler");
+    
+    ctx.configure();
 
-    //     println!("stopping threads");
-    //     *running.write().unwrap() = false;
-    //     deltachat::job::interrupt_inbox_idle(&ctx);
-    //     deltachat::job::interrupt_smtp_idle(&ctx);
+    // wait for ctrl+c
+    while !interupted.load(atomic::Ordering::SeqCst) {
+       thread::sleep(std::time::Duration::from_millis(100));
+    }
 
-    //     println!("joining");
-    //     t1.join().unwrap();
-    //     t2.join().unwrap();
+    println!("stopping threads");
+    *running.write().unwrap() = false;
+    deltachat::job::interrupt_inbox_idle(&ctx);
+    deltachat::job::interrupt_smtp_idle(&ctx);
 
-    //     println!("closing");
+    println!("joining");
+    _t1.join().unwrap();
+    _t2.join().unwrap();
+
+    println!("closing");
 }
