@@ -573,7 +573,7 @@ dependencies = [
 [[package]]
 name = "deltachat"
 version = "1.0.0-beta.24"
-source = "git+https://github.com/deltachat/deltachat-core-rust#3a25d6b275eb2d33a64dbc7a60e37df2bf18a559"
+source = "git+https://github.com/deltachat/deltachat-core-rust?rev=3a25d6b#3a25d6b275eb2d33a64dbc7a60e37df2bf18a559"
 dependencies = [
  "async-imap 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "async-native-tls 0.3.2 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -586,7 +586,7 @@ dependencies = [
  "charset 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "chrono 0.4.10 (registry+https://github.com/rust-lang/crates.io-index)",
  "debug_stub_derive 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "deltachat_derive 2.0.0 (git+https://github.com/deltachat/deltachat-core-rust)",
+ "deltachat_derive 2.0.0 (git+https://github.com/deltachat/deltachat-core-rust?rev=3a25d6b)",
  "email 0.0.21 (git+https://github.com/deltachat/rust-email)",
  "encoded-words 0.1.0 (git+https://github.com/async-email/encoded-words)",
  "escaper 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -629,13 +629,13 @@ dependencies = [
 name = "deltachat-echo-bot"
 version = "0.1.0"
 dependencies = [
- "deltachat 1.0.0-beta.24 (git+https://github.com/deltachat/deltachat-core-rust)",
+ "deltachat 1.0.0-beta.24 (git+https://github.com/deltachat/deltachat-core-rust?rev=3a25d6b)",
 ]
 
 [[package]]
 name = "deltachat_derive"
 version = "2.0.0"
-source = "git+https://github.com/deltachat/deltachat-core-rust#3a25d6b275eb2d33a64dbc7a60e37df2bf18a559"
+source = "git+https://github.com/deltachat/deltachat-core-rust?rev=3a25d6b#3a25d6b275eb2d33a64dbc7a60e37df2bf18a559"
 dependencies = [
  "quote 1.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "syn 1.0.14 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -2902,8 +2902,8 @@ dependencies = [
 "checksum darling_macro 0.10.2 (registry+https://github.com/rust-lang/crates.io-index)" = "d9b5a2f4ac4969822c62224815d069952656cadc7084fdca9751e6d959189b72"
 "checksum debug_stub_derive 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)" = "496b7f8a2f853313c3ca370641d7ff3e42c32974fdccda8f0684599ed0a3ff6b"
 "checksum deflate 0.7.20 (registry+https://github.com/rust-lang/crates.io-index)" = "707b6a7b384888a70c8d2e8650b3e60170dfc6a67bb4aa67b6dfca57af4bedb4"
-"checksum deltachat 1.0.0-beta.24 (git+https://github.com/deltachat/deltachat-core-rust)" = "<none>"
-"checksum deltachat_derive 2.0.0 (git+https://github.com/deltachat/deltachat-core-rust)" = "<none>"
+"checksum deltachat 1.0.0-beta.24 (git+https://github.com/deltachat/deltachat-core-rust?rev=3a25d6b)" = "<none>"
+"checksum deltachat_derive 2.0.0 (git+https://github.com/deltachat/deltachat-core-rust?rev=3a25d6b)" = "<none>"
 "checksum derive_builder 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)" = "a2658621297f2cf68762a6f7dc0bb7e1ff2cfd6583daef8ee0fed6f7ec468ec0"
 "checksum derive_builder_core 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)" = "2791ea3e372c8495c0bc2033991d76b512cd799d07491fbd6890124db9458bef"
 "checksum des 0.3.0 (registry+https://github.com/rust-lang/crates.io-index)" = "74ba5f1b5aee9772379c2670ba81306e65a93c0ee3caade7a1d22b188d88a3af"
