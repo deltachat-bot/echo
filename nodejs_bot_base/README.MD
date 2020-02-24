@@ -1,0 +1,25 @@
+# Echo Bot - Nodejs Bot Base
+
+This is an makes use of `deltachat-node-bot-base` an abstraction Layer over [`deltachat-node`](https://github.com/deltachat/deltachat-node) which does the initial setup for you. It is opninionated (makes some design decissions for you, like the used config module) -> If you want more controll look at echo example which used `deltachat-node` directly: [Advanced Example](../nodejs)
+
+## Run the bot
+
+### First Time Setup
+
+install dependencies with `npm install`
+
+Configure the bot by writing its email-address and password into `config/local.json` like this:
+
+```json
+{
+  "email_address": "bot@example.net",
+  "email_password": "secretandsecure"
+}
+```
+
+### Start The Bot
+
+run the bot:
+```
+node .
+```
