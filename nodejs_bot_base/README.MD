@@ -1,6 +1,6 @@
 # Echo Bot - Nodejs Bot Base
 
-This is an makes use of `deltachat-node-bot-base` an abstraction Layer over [`deltachat-node`](https://github.com/deltachat/deltachat-node) which does the initial setup for you. It is opninionated (makes some design decissions for you, like the used config module) -> If you want more controll look at echo example which used `deltachat-node` directly: [Advanced Example](../nodejs)
+This is an makes use of `deltachat-node-bot-base` an abstraction Layer over [`deltachat-node`](https://github.com/deltachat/deltachat-node) which does the initial setup for you. It is opninionated (makes some design decissions for you, like the used config module) -> If you want more controll look at our other echo-bot example that uses `deltachat-node` directly: [Advanced Example](../nodejs)
 
 ## Run the bot
 
@@ -23,3 +23,8 @@ run the bot:
 ```
 node .
 ```
+
+
+### Questions
+
+If you got any questions reach out to us: https://bots.delta.chat/contact.html
