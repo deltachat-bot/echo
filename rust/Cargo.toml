@@ -1,0 +1,11 @@
+[package]
+name = "deltachat-echo-bot"
+version = "0.1.0"
+authors = ["DeltaChatBot Contributers<https://github.com/deltachat-bot>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+deltachat = { git = "https://github.com/deltachat/deltachat-core-rust", rev = "3a25d6b" }
+ctrlc = "3.1.4"
