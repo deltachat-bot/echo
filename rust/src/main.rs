@@ -34,7 +34,7 @@ async fn handle_message(_ctx: &Context, chat_id: ChatId, msg_id: MsgId) -> Resul
 }
 
 async fn cb(_ctx: &Context, event: EventType) {
-    // print!("[{:?}]", event);
+    //println!("[{:?}]", event);
 
     match event {
         EventType::ConfigureProgress { progress, comment } => {
@@ -82,31 +82,6 @@ async fn main() {
         }
     });
 
-    println!("configuring");
-
-    if let Some(addr) = vars().find(|key| key.0 == "addr") {
-        ctx.set_config(config::Config::Addr, Some(&addr.1))
-            .await
-            .unwrap();
-    } else {
-        panic!("no addr ENV var specified");
-    }
-
-    if let Some(pw) = vars().find(|key| key.0 == "mailpw") {
-        ctx.set_config(config::Config::MailPw, Some(&pw.1))
-            .await
-            .unwrap();
-    } else {
-        panic!("no mailpw ENV var specified");
-    }
-
-    ctx.set_config(config::Config::Bot, Some("true"))
-        .await
-        .unwrap();
-    ctx.set_config(config::Config::E2eeEnabled, Some("0"))
-        .await
-        .unwrap();
-
     let interrupted = Arc::new(atomic::AtomicBool::new(false));
     let i = interrupted.clone();
 
@@ -114,7 +89,36 @@ async fn main() {
         i.store(true, atomic::Ordering::SeqCst);
     })
     .expect("Error setting Ctrl-C handler");
-    ctx.configure().await.unwrap();
+
+    let is_configured = ctx.get_config_bool(config::Config::Configured).await;
+    if !is_configured {
+        println!("configuring");
+        if let Some(addr) = vars().find(|key| key.0 == "addr") {
+            ctx.set_config(config::Config::Addr, Some(&addr.1))
+                .await
+                .unwrap();
+        } else {
+            panic!("no addr ENV var specified");
+        }
+        if let Some(pw) = vars().find(|key| key.0 == "mailpw") {
+            ctx.set_config(config::Config::MailPw, Some(&pw.1))
+                .await
+                .unwrap();
+        } else {
+            panic!("no mailpw ENV var specified");
+        }
+        ctx.set_config(config::Config::Bot, Some("1"))
+            .await
+            .unwrap();
+        ctx.set_config(config::Config::E2eeEnabled, Some("1"))
+            .await
+            .unwrap();
+
+        ctx.configure().await.unwrap();
+        println!("configuration done");
+    } else {
+        println!("account is already configured");
+    }
 
     println!("------ RUN ------");
     ctx.start_io().await;
