@@ -1,5 +1,6 @@
+use futures_lite::future::FutureExt;
 use std::env::{current_dir, vars};
-use std::sync::{atomic, Arc};
+use std::sync::Arc;
 
 use deltachat::chat::*;
 use deltachat::config;
@@ -73,22 +74,12 @@ async fn main() {
     let info = ctx.get_info().await;
     println!("info: {:#?}", info);
     let ctx = Arc::new(ctx);
-    let ctx1 = ctx.clone();
 
     let events = ctx.get_event_emitter();
-    let events_spawn = async_std::task::spawn(async move {
-        while let Some(event) = events.recv().await {
-            cb(&ctx1, event.typ).await;
-        }
-    });
 
-    let interrupted = Arc::new(atomic::AtomicBool::new(false));
-    let i = interrupted.clone();
-
-    ctrlc::set_handler(move || {
-        i.store(true, atomic::Ordering::SeqCst);
-    })
-    .expect("Error setting Ctrl-C handler");
+    let (interrupt_send, interrupt_recv) = async_std::sync::channel(1);
+    ctrlc::set_handler(move || async_std::task::block_on(interrupt_send.send(())))
+        .expect("Error setting Ctrl-C handler");
 
     let is_configured = ctx.get_config_bool(config::Config::Configured).await;
     if !is_configured {
@@ -123,14 +114,23 @@ async fn main() {
     println!("------ RUN ------");
     ctx.start_io().await;
 
-    // wait for ctrl+c
-    while !interrupted.load(atomic::Ordering::SeqCst) {
-        async_std::task::sleep(std::time::Duration::from_millis(100)).await;
+    // wait for ctrl+c or event
+    while let Some(event) = async {
+        interrupt_recv.recv().await.unwrap();
+        None
+    }
+    .race(events.recv())
+    .await
+    {
+        cb(&ctx, event.typ).await;
     }
 
     println!("stopping");
     ctx.stop_io().await;
     println!("closing");
     drop(ctx);
-    events_spawn.await;
+
+    while let Some(event) = events.recv().await {
+        println!("ignoring event {:?}", event);
+    }
 }

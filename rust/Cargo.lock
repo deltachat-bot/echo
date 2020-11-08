@@ -909,6 +909,7 @@ dependencies = [
  "async-std",
  "ctrlc",
  "deltachat",
+ "futures-lite",
 ]
 
 [[package]]
