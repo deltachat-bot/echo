@@ -1,22 +1,18 @@
+use futures_lite::future::FutureExt;
 use std::env::{current_dir, vars};
-use std::sync::{Arc, RwLock, atomic};
-use std::thread;
+use std::sync::Arc;
 
 use deltachat::chat::*;
 use deltachat::config;
 use deltachat::constants::{Chattype, Viewtype, DC_CONTACT_ID_SELF};
 use deltachat::context::*;
 use deltachat::error::Error;
-use deltachat::job::{
-    perform_inbox_fetch, perform_inbox_idle, perform_inbox_jobs, perform_smtp_idle,
-    perform_smtp_jobs,
-};
 use deltachat::message::*;
-use deltachat::Event;
+use deltachat::EventType;
 
-fn handle_message(_ctx: &Context, chat_id: ChatId, msg_id: MsgId) -> Result<(), Error> {
-    let chat = Chat::load_from_db(_ctx, chat_id)?;
-    let msg = Message::load_from_db(_ctx, msg_id)?;
+async fn handle_message(_ctx: &Context, chat_id: ChatId, msg_id: MsgId) -> Result<(), Error> {
+    let chat = Chat::load_from_db(_ctx, chat_id).await?;
+    let msg = Message::load_from_db(_ctx, msg_id).await?;
 
     if msg.get_from_id() == DC_CONTACT_ID_SELF {
         // prevent loop (don't react to own messages)
@@ -32,108 +28,109 @@ fn handle_message(_ctx: &Context, chat_id: ChatId, msg_id: MsgId) -> Result<(), 
     if chat.get_type() == Chattype::Single {
         let mut message = Message::new(Viewtype::Text);
         message.set_text(msg.get_text());
-        send_msg(_ctx, chat_id, &mut message)?;
+        send_msg(_ctx, chat_id, &mut message).await?;
     }
 
     Ok(())
 }
 
-fn cb(_ctx: &Context, event: Event) {
-    print!("[{:?}]", event);
+async fn cb(_ctx: &Context, event: EventType) {
+    //println!("[{:?}]", event);
 
     match event {
-        Event::ConfigureProgress(progress) => {
-            println!("  progress: {}", progress);
+        EventType::ConfigureProgress { progress, comment } => {
+            println!("  progress: {} {:?}", progress, comment);
         }
-        Event::Info(msg) | Event::Warning(msg) | Event::Error(msg) | Event::ErrorNetwork(msg) => {
-            println!("  {}", msg);
+        EventType::Info(msg)
+        | EventType::Warning(msg)
+        | EventType::Error(msg)
+        | EventType::ErrorNetwork(msg) => {
+            println!(" {}", msg);
         }
-        Event::MsgsChanged { chat_id, msg_id } => match handle_message(_ctx, chat_id, msg_id) {
-            Err(err) => {
-                print!("{}", err);
+        EventType::MsgsChanged { chat_id, msg_id } => {
+            match handle_message(_ctx, chat_id, msg_id).await {
+                Err(err) => {
+                    print!("{}", err);
+                }
+                Ok(_val) => {}
             }
-            Ok(_val) => {}
-        },
+        }
         ev => {
             println!("[EV] {:?}", ev);
         }
     }
 }
 
-fn main() {
+#[async_std::main]
+async fn main() {
     let dbdir = current_dir().unwrap().join("deltachat-db");
     std::fs::create_dir_all(dbdir.clone()).unwrap();
     let dbfile = dbdir.join("db.sqlite");
     println!("creating database {:?}", dbfile);
-    let ctx =
-        Context::new(Box::new(cb), "FakeOs".into(), dbfile).expect("Failed to create context");
-    let running = Arc::new(RwLock::new(true));
-    let info = ctx.get_info();
+    let ctx = Context::new("FakeOs".into(), dbfile.into(), 0)
+        .await
+        .expect("Failed to create context");
+
+    let info = ctx.get_info().await;
     println!("info: {:#?}", info);
-
     let ctx = Arc::new(ctx);
-    let ctx1 = ctx.clone();
-    let r1 = running.clone();
-    let _t1 = thread::spawn(move || {
-        while *r1.read().unwrap() {
-            perform_inbox_jobs(&ctx1);
-            if *r1.read().unwrap() {
-                perform_inbox_fetch(&ctx1);
 
-                if *r1.read().unwrap() {
-                    perform_inbox_idle(&ctx1);
-                }
-            }
+    let events = ctx.get_event_emitter();
+
+    let (interrupt_send, interrupt_recv) = async_std::sync::channel(1);
+    ctrlc::set_handler(move || async_std::task::block_on(interrupt_send.send(())))
+        .expect("Error setting Ctrl-C handler");
+
+    let is_configured = ctx.get_config_bool(config::Config::Configured).await;
+    if !is_configured {
+        println!("configuring");
+        if let Some(addr) = vars().find(|key| key.0 == "addr") {
+            ctx.set_config(config::Config::Addr, Some(&addr.1))
+                .await
+                .unwrap();
+        } else {
+            panic!("no addr ENV var specified");
         }
-    });
-
-    let ctx1 = ctx.clone();
-    let r1 = running.clone();
-    let _t2 = thread::spawn(move || {
-        while *r1.read().unwrap() {
-            perform_smtp_jobs(&ctx1);
-            if *r1.read().unwrap() {
-                perform_smtp_idle(&ctx1);
-            }
+        if let Some(pw) = vars().find(|key| key.0 == "mailpw") {
+            ctx.set_config(config::Config::MailPw, Some(&pw.1))
+                .await
+                .unwrap();
+        } else {
+            panic!("no mailpw ENV var specified");
         }
-    });
+        ctx.set_config(config::Config::Bot, Some("1"))
+            .await
+            .unwrap();
+        ctx.set_config(config::Config::E2eeEnabled, Some("1"))
+            .await
+            .unwrap();
 
-    println!("configuring");
-
-    if let Some(addr) = vars().find(|key| key.0 == "addr") {
-        ctx.set_config(config::Config::Addr, Some(&addr.1)).unwrap();
+        ctx.configure().await.unwrap();
+        println!("configuration done");
     } else {
-        panic!("no addr ENV var specified");
+        println!("account is already configured");
     }
 
-    if let Some(pw) = vars().find(|key| key.0 == "mailpw") {
-        ctx.set_config(config::Config::MailPw, Some(&pw.1)).unwrap();
-    } else {
-        panic!("no mailpw ENV var specified");
+    println!("------ RUN ------");
+    ctx.start_io().await;
+
+    // wait for ctrl+c or event
+    while let Some(event) = async {
+        interrupt_recv.recv().await.unwrap();
+        None
+    }
+    .race(events.recv())
+    .await
+    {
+        cb(&ctx, event.typ).await;
     }
 
-    let interrupted = Arc::new(atomic::AtomicBool::new(false));
-    let i = interrupted.clone();
-
-    ctrlc::set_handler(move || {
-        i.store(true, atomic::Ordering::SeqCst);
-    }).expect("Error setting Ctrl-C handler");
-    
-    ctx.configure();
-
-    // wait for ctrl+c
-    while !interrupted.load(atomic::Ordering::SeqCst) {
-       thread::sleep(std::time::Duration::from_millis(100));
-    }
-
-    println!("stopping threads");
-    *running.write().unwrap() = false;
-    deltachat::job::interrupt_inbox_idle(&ctx);
-    deltachat::job::interrupt_smtp_idle(&ctx);
-
-    println!("joining");
-    _t1.join().unwrap();
-    _t2.join().unwrap();
-
+    println!("stopping");
+    ctx.stop_io().await;
     println!("closing");
+    drop(ctx);
+
+    while let Some(event) = events.recv().await {
+        println!("ignoring event {:?}", event);
+    }
 }
