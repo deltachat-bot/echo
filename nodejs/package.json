@@ -10,7 +10,7 @@
   "private": true,
   "dependencies": {
     "@types/node": "^13.7.2",
-    "deltachat-node": "^1.0.0-beta.26",
+    "deltachat-node": "1.45.0",
     "rc": "^1.2.8"
   }
 }
