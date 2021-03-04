@@ -1,6 +1,7 @@
 # echo
 An echo bot in multiple languages to get you started.
 
+- [C](./c)
 - [node.js](./nodejs)
 - [Rust](./rust)
 
