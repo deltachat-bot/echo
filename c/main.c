@@ -3,12 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifdef _WIN32
-#include <Windows.h>
-#else
-#include <unistd.h>
-#endif
-
 void handle_message(dc_context_t *context, int chat_id, int message_id) {
   dc_chat_t *chat = dc_get_chat(context, chat_id);
 
@@ -85,7 +79,7 @@ void *event_handler(void *context) {
     } else if (event_type == DC_EVENT_INCOMING_MSG) {
       int chat_id = dc_event_get_data1_int(event);
       int message_id = dc_event_get_data2_int(event);
-      printf("[incomming-msg] %d %d\n", chat_id, message_id);
+      printf("[incoming-msg] %d %d\n", chat_id, message_id);
       handle_message(context, chat_id, message_id);
     } else {
       printf("[?] unhandled event of type: %d\n", event_type);
@@ -128,11 +122,14 @@ int main() {
     if (!addr || !mailpw) {
       stop_context(context);
       printf("shutting down...\n");
-      sleep(3);
+      int thread_join_result = pthread_join (event_thread, NULL);
+      if(thread_join_result != 0){
+        printf("join thread failed with error code %d\n", thread_join_result);
+      }
       return 1;
     }
 
-    printf("configuring bot then after that start io to wait for messages\n");
+    printf("configuring bot\n");
     dc_set_config(context, "addr", addr);
     dc_set_config(context, "mail_pw", mailpw);
     dc_set_config(context, "bot", "1");
@@ -143,10 +140,12 @@ int main() {
     dc_start_io(context);
   }
 
-  while (1) {
-    // sleep here to make sure the process does not exit and does not eat up cpu
-    // usage
-    sleep(1);
+  // wait for event thread to complete
+  int thread_join_result = pthread_join (event_thread, NULL);
+  if(thread_join_result != 0){
+    printf("join thread failed with error code %d\n", thread_join_result);
   }
+
+
   return 0;
 }
