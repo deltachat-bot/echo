@@ -45,6 +45,7 @@ void *event_handler(void *context) {
         printf("[Warn] %s\n", message);
         break;
       }
+      dc_str_unref(message);
     } else if (event_type == DC_EVENT_CONFIGURE_PROGRESS) {
 
       int progress = dc_event_get_data1_int(event);
@@ -60,6 +61,7 @@ void *event_handler(void *context) {
         printf("[BOT] confuguration sucessfull, starting io");
         dc_start_io(context);
       }
+      dc_str_unref(comment);
 
     } else if (event_type == DC_EVENT_MSGS_CHANGED) {
       int chat_id = dc_event_get_data1_int(event);
