@@ -13,7 +13,7 @@ cd deltachat-core-rust
 cmake -B build . && cmake --build build && sudo cmake --install build
 ```
 
-> Info: There is no uninstall yet, use `sudo rm` to remove the files cmake created.
+> Info: To uninstall, run `sudo xargs -d\\n rm -f <build/install_manifest.txt` in the same directory
 
 ## Usage
 
