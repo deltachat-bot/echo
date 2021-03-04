@@ -19,7 +19,9 @@ void handle_message(dc_context_t *context, int chat_id, int message_id) {
       return;
     }
 
-    dc_send_text_msg(context, chat_id, dc_msg_get_text(msg));
+    char* text = dc_msg_get_text(msg);
+    dc_send_text_msg(context, chat_id, text);
+    dc_str_unref(text);
     dc_msg_unref(msg);
   }
 
