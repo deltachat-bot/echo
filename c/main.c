@@ -13,7 +13,7 @@ void handle_message(dc_context_t *context, int chat_id, int message_id) {
       return;
     }
 
-    char* text = dc_msg_get_text(msg);
+    char *text = dc_msg_get_text(msg);
     dc_send_text_msg(context, chat_id, text);
     dc_str_unref(text);
     dc_msg_unref(msg);
@@ -124,8 +124,8 @@ int main() {
     if (!addr || !mailpw) {
       stop_context(context);
       printf("shutting down...\n");
-      int thread_join_result = pthread_join (event_thread, NULL);
-      if(thread_join_result != 0){
+      int thread_join_result = pthread_join(event_thread, NULL);
+      if (thread_join_result != 0) {
         printf("join thread failed with error code %d\n", thread_join_result);
       }
       return 1;
@@ -143,11 +143,10 @@ int main() {
   }
 
   // wait for event thread to complete
-  int thread_join_result = pthread_join (event_thread, NULL);
-  if(thread_join_result != 0){
+  int thread_join_result = pthread_join(event_thread, NULL);
+  if (thread_join_result != 0) {
     printf("join thread failed with error code %d\n", thread_join_result);
   }
-
 
   return 0;
 }
