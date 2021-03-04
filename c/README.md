@@ -37,3 +37,10 @@ clang-format -i main.c
 ```
 
 You might need to install `clang-format` first.
+
+### Quirks
+
+> There is no way to terminate it currently. I wanted to propose a SIGTERM handler, but realized doing it properly is more difficult than it should be: deltachat/deltachat-core-rust#2280
+> So for the purpose of example it's easier to assume the bot will be running forever.
+>
+> ~ link2xt on https://github.com/deltachat-bot/echo/pull/13#issuecomment-790594993
