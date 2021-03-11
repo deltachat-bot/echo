@@ -1,0 +1,4 @@
+node_modules
+config
+db.sqlite
+db.sqlite-blobs
