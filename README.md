@@ -3,6 +3,7 @@ An echo bot in multiple languages to get you started.
 
 Direct:
 
+- [C](./c)
 - [node.js](./nodejs)
 - [Rust](./rust)
 
