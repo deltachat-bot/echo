@@ -90,6 +90,8 @@ void *event_handler(void *context) {
     dc_event_unref(event);
   }
   dc_event_emitter_unref(emitter);
+
+  return NULL;
 }
 
 void stop_context(dc_context_t *context) {
