@@ -21,11 +21,14 @@ virtualenv .venv
 source .venv/bin/activate
 pip3 install -U pip wheel
 
+# install deltachat
+pip3 install --pre -U -i https://m.devpi.net/dc/master deltachat # see https://github.com/deltachat/deltachat-core-rust/tree/master/python if it doesn't work for instructions on how to install it from source)
+
 # Install deltabot
 pip install git+https://github.com/deltachat-bot/deltabot.git@ae298b414d0ed6b5ffbfcca466375f60e3a5b4b9 attrs
 
 # init the bot (either set the env vars or replace them with the email credentials the bot should use)
-deltabot --basedir=.data init "ADDR" "PASSWORD"
+deltabot --basedir=.data init $ADDR "$PASSWORD"
 ```
 
 ### Install the module/plugin

@@ -21,8 +21,11 @@ pip install virtualenv
 virtualenv .venv
 source .venv/bin/activate
 pip3 install -U pip wheel
-# Install simplebot
+
+# install deltachat
 pip3 install --pre -U -i https://m.devpi.net/dc/master deltachat # see https://github.com/deltachat/deltachat-core-rust/tree/master/python if it doesn't work for instructions on how to install it from source)
+
+# Install simplebot
 pip3 install https://github.com/simplebot-inc/simplebot/archive/master.zip
 # or alternativly pip3 install simplebot
 
