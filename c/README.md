@@ -44,3 +44,7 @@ You might need to install `clang-format` first.
 > So for the purpose of example it's easier to assume the bot will be running forever.
 >
 > ~ link2xt on https://github.com/deltachat-bot/echo/pull/13#issuecomment-790594993
+
+### Useful Links
+
+- Documentation https://c.delta.chat/
