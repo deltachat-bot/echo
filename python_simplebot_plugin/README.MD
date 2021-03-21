@@ -13,7 +13,7 @@ which is a fork of [deltabot](https://github.com/deltachat-bot/deltabot) and has
 
 ### Setup simplebot
 
-You need python 3.7 for this to work.
+You need python 3.7 for this to work. (Newer versions could works, but this example was tested to work with this version, feel free to upgrade the example and drop us an pullrequest)
 
 ```sh
 # Optional create virtualenv
@@ -24,7 +24,7 @@ pip3 install -U pip wheel
 # Install simplebot
 pip3 install --pre -U -i https://m.devpi.net/dc/master deltachat # see https://github.com/deltachat/deltachat-core-rust/tree/master/python if it doesn't work for instructions on how to install it from source)
 pip3 install https://github.com/simplebot-inc/simplebot/archive/master.zip
-# or alternativly pip3 install simplebot 
+# or alternativly pip3 install simplebot
 
 # init the bot (either set the env vars or replace them with the email credentials the bot should use)
 simplebot --basedir ./.simplebotdata init $ADDR "$PASSWORD"
@@ -33,6 +33,7 @@ simplebot --basedir ./.simplebotdata init $ADDR "$PASSWORD"
 ### Install the plugin
 
 In simple bot you install plugins like this:
+
 ```sh
 simplebot plugin --add /path/to/plugin.py
 ```
@@ -43,12 +44,14 @@ This folder contains two examples:
 - `echo_command.py` - An `/echo [text]` command
 
 So the commands are the following:
+
 ```sh
 simplebot --basedir ./.simplebotdata --add echo.py
 simplebot --basedir ./.simplebotdata --add echo_command.py
 ```
 
 To start type:
+
 ```
 simplebot --basedir ./.simplebotdata serve
 ```
