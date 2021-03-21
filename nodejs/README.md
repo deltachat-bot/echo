@@ -5,6 +5,12 @@
 install dependencies with `npm install`
 
 run the bot:
+
 ```
 node . --email_address $yourEmail --email_password $yourPassword
 ```
+
+### Useful Links
+
+- Documentation for nodebinding https://js.delta.chat/
+- Documentation for the C-FFI on which [deltachat-node](https://github.com/deltachat/deltachat-node) is based https://c.delta.chat/
