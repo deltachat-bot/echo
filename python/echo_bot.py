@@ -15,7 +15,7 @@ class EchoPlugin:
     def ac_message_delivered(self, message):
         print("ac_message_delivered", message)
 
-    # all availible hooks can be found
+    # all available hooks can be found
     # in https://github.com/deltachat/deltachat-core-rust/blob/master/python/src/deltachat/hookspec.py
 
 def main(argv=None):

@@ -4,16 +4,16 @@ This example is about creating a plugin for [simplebot](https://github.com/Simpl
 a pluggable deltachat bot,
 which is a fork of [deltabot](https://github.com/deltachat-bot/deltabot) and has a [vast ecosystem of plugins](https://github.com/SimpleBot-Inc/simplebot_plugins) already availible and used in production.
 
-> There are 2 alternative options availible:
+> There are 2 alternative options available:
 >
 > - [using deltabot](../python_deltabot_plugin) (similar to simplebot, but less plugins)
-> - [using python directly](../python) (more controll, but also more code to take care of)
+> - [using python directly](../python) (more control, but also more code to take care of)
 
 ## Usage
 
 ### Setup simplebot
 
-You need python 3.7 for this to work. (Newer versions could works, but this example was tested to work with this version, feel free to upgrade the example and drop us an pullrequest)
+You need python 3.7 for this to work. (Newer versions could work, but this example was tested to work with this version, feel free to upgrade the example and drop us a pull request)
 
 ```sh
 # Optional create virtualenv
@@ -23,7 +23,7 @@ source .venv/bin/activate
 pip3 install -U pip wheel
 
 # install deltachat
-pip3 install --pre -U -i https://m.devpi.net/dc/master deltachat # see https://github.com/deltachat/deltachat-core-rust/tree/master/python if it doesn't work for instructions on how to install it from source)
+pip3 install --pre -U -i https://m.devpi.net/dc/master deltachat # if it doesn't work, see https://github.com/deltachat/deltachat-core-rust/tree/master/python for instructions on how to install it from source)
 
 # Install simplebot
 pip3 install https://github.com/simplebot-inc/simplebot/archive/master.zip

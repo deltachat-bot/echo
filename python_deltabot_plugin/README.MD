@@ -3,7 +3,7 @@
 This example is about creating a plugin for [deltabot](https://github.com/deltachat-bot/deltabot),
 a pluggable deltachat bot.
 
-> There are 2 alternative options availible:
+> There are 2 alternative options available:
 >
 > - [using simplebot](../python_simplebot_plugin) (simplebot is a maintained fork of deltabot with many plugins availible)
 > - [using python directly](../python) (more controll, but also more code to take care of)
@@ -12,7 +12,7 @@ a pluggable deltachat bot.
 
 ### Setup deltabot
 
-You need python 3.7 for this to work. (Newer versions could works, but this example was tested to work with this version, feel free to upgrade the example and drop us an pullrequest)
+You need python 3.7 for this to work. (Newer versions could work, but this example was tested to work with this version, feel free to upgrade the example and drop us a pull request)
 
 ```sh
 # Optional create virtualenv
