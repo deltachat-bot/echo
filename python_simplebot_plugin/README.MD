@@ -1,6 +1,6 @@
 # Python Simplebot Plugin
 
-This example is about creating a plugin for [simplebot](https://github.com/SimpleBot-Inc/simplebot),
+This example is about creating a plugin for [simplebot](https://github.com/simplebot-org/simplebot),
 a pluggable deltachat bot,
 which is a fork of [deltabot](https://github.com/deltachat-bot/deltabot) and has a [vast ecosystem of plugins](https://github.com/SimpleBot-Inc/simplebot_plugins) already availible and used in production.
 
@@ -30,12 +30,12 @@ pip3 install https://github.com/simplebot-inc/simplebot/archive/master.zip
 # or alternativly pip3 install simplebot
 
 # init the bot (either set the env vars or replace them with the email credentials the bot should use)
-simplebot --basedir ./.simplebotdata init $ADDR "$PASSWORD"
+simplebot --account ./.simplebotdata init $ADDR "$PASSWORD"
 ```
 
 ### Install the plugin
 
-In simple bot you install plugins like this:
+In simplebot you install plugins like this:
 
 ```sh
 simplebot plugin --add /path/to/plugin.py
@@ -49,16 +49,16 @@ This folder contains two examples:
 So the commands are the following:
 
 ```sh
-simplebot --basedir ./.simplebotdata --add echo.py
+simplebot --account ./.simplebotdata plugin --add echo.py
 simplebot --basedir ./.simplebotdata --add echo_command.py
 ```
 
 To start type:
 
 ```
-simplebot --basedir ./.simplebotdata serve
+simplebot -a ./.simplebotdata serve
 ```
 
 ## References
 
-Also see the source of the existing plugins over at https://github.com/SimpleBot-Inc/simplebot_plugins.
+Also see the source of the existing plugins over at https://github.com/simplebot-org/simplebot_plugins.

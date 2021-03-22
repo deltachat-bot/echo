@@ -29,4 +29,4 @@ python echo_bot.py /tmp/db --email ADDRESS --password PASSWORD
 - all available hooks can be found in https://github.com/deltachat/deltachat-core-rust/blob/master/python/src/deltachat/hookspec.py
 - Python bindings documentation py.delta.chat
 - https://py.delta.chat/examples.html
-- sourcecode of python bindings https://github.com/deltachat/deltachat-core-rust/tree/master/python
+- source code of python bindings https://github.com/deltachat/deltachat-core-rust/tree/master/python

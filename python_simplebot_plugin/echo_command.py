@@ -1,5 +1,5 @@
 import simplebot
 @simplebot.command
-def echo(command, replies):
+def echo(payload, replies):
    """Echo back given text."""
-   replies.add(text=command.payload or 'echo')
+   replies.add(text=payload or 'echo')
