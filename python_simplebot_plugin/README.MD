@@ -67,3 +67,5 @@ simplebot -a ./.simplebotdata serve
 ## References
 
 Also see the source of the existing plugins over at https://github.com/simplebot-org/simplebot_plugins.
+
+> **Tip:** instead of manually registering script by script, simplebot supports registering folders (and also python package folders), ex. `~/my_plugins` then all script you add there will be loaded when the bot starts and you can add new script or remove existing scripts without having to add/remove using these commands
