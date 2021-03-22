@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from deltabot.hookspec import deltabot_hookimpl
 
-version = '0.5'
-
 @deltabot_hookimpl
 def deltabot_init(bot):
     bot.commands.register(name="/echo", func=process_command_echo)
