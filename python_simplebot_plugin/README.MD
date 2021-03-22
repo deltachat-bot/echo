@@ -38,7 +38,12 @@ simplebot --account ./.simplebotdata init $ADDR "$PASSWORD"
 In simplebot you install plugins like this:
 
 ```sh
+# with a default account set
 simplebot plugin --add /path/to/plugin.py
+# with account
+simplebot --account bot@example.org plugin --add /path/to/plugin.py
+# with account folder
+simplebot --account ./.simplebotdata plugin --add /path/to/plugin.py
 ```
 
 This folder contains two examples:
