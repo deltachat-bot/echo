@@ -50,7 +50,7 @@ So the commands are the following:
 
 ```sh
 simplebot --account ./.simplebotdata plugin --add echo.py
-simplebot --basedir ./.simplebotdata --add echo_command.py
+simplebot --account ./.simplebotdata plugin --add echo_command.py
 ```
 
 To start type:
