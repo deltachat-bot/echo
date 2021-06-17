@@ -1,6 +1,7 @@
 use futures_lite::future::FutureExt;
 use std::env::{current_dir, vars};
 use std::sync::Arc;
+use std::{thread, time};
 
 use deltachat::chat::*;
 use deltachat::config;
@@ -27,8 +28,12 @@ async fn handle_message(_ctx: &Context, chat_id: ChatId, msg_id: MsgId) -> Resul
 
     if chat.get_type() == Chattype::Single {
         let mut message = Message::new(Viewtype::Text);
-        message.set_text(msg.get_text());
-        send_msg(_ctx, chat_id, &mut message).await?;
+        for n in 1..201 {
+            message.set_text(Some(format!("Hello {}", n).to_owned()));
+            send_msg(_ctx, chat_id, &mut message).await?;
+            println!("{}", n);
+            thread::sleep(time::Duration::from_millis(100));
+        }
     }
 
     Ok(())
