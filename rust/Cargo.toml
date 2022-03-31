@@ -7,7 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-deltachat = { git = "https://github.com/deltachat/deltachat-core-rust", tag="1.75.0"}
+deltachat = { git = "https://github.com/deltachat/deltachat-core-rust", tag="1.76.0"}
 ctrlc = { version = "3.1.7", features = ["termination"] }
 async-std = { version = "1.7.0", features = ["attributes"] }
 futures-lite = "1.11.2"
