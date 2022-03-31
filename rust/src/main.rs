@@ -9,6 +9,7 @@ use deltachat::constants::{Chattype, Viewtype, DC_CONTACT_ID_SELF};
 use deltachat::context::*;
 use deltachat::message::*;
 use deltachat::EventType;
+use anyhow::{Context as _, Result};
 
 async fn handle_message(
     ctx: &Context,
@@ -71,13 +72,13 @@ async fn cb(ctx: &Context, event: EventType) {
 
 #[async_std::main]
 async fn main() -> anyhow::Result<()> {
-    let dbdir = current_dir().unwrap().join("deltachat-db");
-    std::fs::create_dir_all(dbdir.clone()).unwrap();
+    let dbdir = current_dir().context("failed to get current working directory")?.join("deltachat-db");
+    std::fs::create_dir_all(dbdir.clone()).context("failed to create data folder")?;
     let dbfile = dbdir.join("db.sqlite");
     println!("creating database {:?}", dbfile);
     let ctx = Context::new(dbfile.into(), 0)
         .await
-        .expect("Failed to create context");
+        .context("Failed to create context")?;
 
     let info = ctx.get_info().await;
     println!("info: {:#?}", info);
@@ -87,7 +88,7 @@ async fn main() -> anyhow::Result<()> {
 
     let (interrupt_send, interrupt_recv) = channel::bounded(1);
     ctrlc::set_handler(move || async_std::task::block_on(interrupt_send.send(())).unwrap())
-        .expect("Error setting Ctrl-C handler");
+        .context("Error setting Ctrl-C handler")?;
 
     let is_configured = ctx.get_config_bool(config::Config::Configured).await?;
     if !is_configured {
@@ -95,25 +96,25 @@ async fn main() -> anyhow::Result<()> {
         if let Some(addr) = vars().find(|key| key.0 == "addr") {
             ctx.set_config(config::Config::Addr, Some(&addr.1))
                 .await
-                .unwrap();
+                .context("set config failed")?;
         } else {
             panic!("no addr ENV var specified");
         }
         if let Some(pw) = vars().find(|key| key.0 == "mailpw") {
             ctx.set_config(config::Config::MailPw, Some(&pw.1))
                 .await
-                .unwrap();
+                .context("set config failed")?;
         } else {
             panic!("no mailpw ENV var specified");
         }
         ctx.set_config(config::Config::Bot, Some("1"))
             .await
-            .unwrap();
+            .context("set config failed")?;
         ctx.set_config(config::Config::E2eeEnabled, Some("1"))
             .await
-            .unwrap();
+            .context("set config failed")?;
 
-        ctx.configure().await.unwrap();
+        ctx.configure().await.context("configure failed")?;
         println!("configuration done");
     } else {
         println!("account is already configured");
