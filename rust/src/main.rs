@@ -1,11 +1,12 @@
 use async_std::channel;
+use deltachat::contact::ContactId;
 use futures_lite::future::FutureExt;
 use std::env::{current_dir, vars};
 use std::sync::Arc;
 
 use deltachat::chat::*;
 use deltachat::config;
-use deltachat::constants::{Chattype, Viewtype, DC_CONTACT_ID_SELF};
+use deltachat::constants::{Chattype};
 use deltachat::context::*;
 use deltachat::message::*;
 use deltachat::EventType;
@@ -23,7 +24,7 @@ async fn handle_message(
     }
 
     let msg = Message::load_from_db(ctx, msg_id).await?;
-    if msg.get_from_id() == DC_CONTACT_ID_SELF {
+    if msg.get_from_id() == ContactId::SELF {
         // prevent loop (don't react to own messages)
         return Ok(());
     }
