@@ -6,7 +6,7 @@ An echo bot in multiple languages to get you started.
 
 | Language            | core version |
 | ------------------- | ------------ |
-| [C](./c)            | `?`          |
+| [C](./c)            | `1.78.0`     |
 | [node.js](./nodejs) | `1.45.0`     |
 | [Python](./python)  | `?`          |
 | [Rust](./rust)      | `1.78.0`     |
