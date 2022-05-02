@@ -919,8 +919,8 @@ dependencies = [
 
 [[package]]
 name = "deltachat"
-version = "1.78.0"
-source = "git+https://github.com/deltachat/deltachat-core-rust?tag=1.78.0#c75c95afa996e87824fce06d7e265c39db6e3111"
+version = "1.79.0"
+source = "git+https://github.com/deltachat/deltachat-core-rust?tag=1.79.0#e1c3e953071d6c587e782e99161778dd02776080"
 dependencies = [
  "anyhow",
  "async-imap",
@@ -994,7 +994,7 @@ dependencies = [
 [[package]]
 name = "deltachat_derive"
 version = "2.0.0"
-source = "git+https://github.com/deltachat/deltachat-core-rust?tag=1.78.0#c75c95afa996e87824fce06d7e265c39db6e3111"
+source = "git+https://github.com/deltachat/deltachat-core-rust?tag=1.79.0#e1c3e953071d6c587e782e99161778dd02776080"
 dependencies = [
  "quote",
  "syn",
