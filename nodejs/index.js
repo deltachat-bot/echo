@@ -1,18 +1,24 @@
-const { DeltaChat, C } = require("deltachat-node");
+//@ts-check
+const { Context, C } = require("deltachat-node");
 const path = require("path");
 
 // Load config
 var conf = require("rc")("dc-echo", {
   email_address: undefined,
-  email_password: undefined
+  email_password: undefined,
 });
 
 // Setup DC
-const dc = new DeltaChat();
+const dc = Context.open(path.join(__dirname, "deltachat-db"));
 
 function handleDCMessage(chatid, msgId) {
   const chat = dc.getChat(chatid);
+  console.log(chat.isContactRequest());
   const msg = dc.getMessage(msgId);
+
+  if (chat.isContactRequest()) {
+    dc.acceptChat(chatid);
+  }
 
   // only echo to DM
   if (chat.getType() === C.DC_CHAT_TYPE_SINGLE) {
@@ -20,21 +26,14 @@ function handleDCMessage(chatid, msgId) {
   }
 }
 
-dc.on("DC_EVENT_MSGS_CHANGED", (chatId, msgId) => {
-  // Deaddrop fix for bot, otherwise first message would be ignored
-  const message = dc.getMessage(msgId);
-  if (message && message.isDeadDrop()) {
-    handleDCMessage(dc.createChatByMessageId(msgId), msgId);
-  }
-});
 dc.on("DC_EVENT_INCOMING_MSG", handleDCMessage);
 
 //dc.on("ALL", console.log.bind(null, "core |")); // advanced logging for debugging
 
 // Start DC
 async function setup() {
-  await dc.open(path.join(__dirname, "deltachat-db"));
   if (!dc.isConfigured()) {
+    console.log("not configured, doing that now");
     if (!conf.email_address || !conf.email_password) {
       console.error("Not configued and email address or password is missing.");
       process.exit(1);
@@ -44,10 +43,11 @@ async function setup() {
       mail_pw: conf.email_password,
       e2ee_enabled: true,
       // the bot flag is only respected core version >= 47, but it does not hurt to already add it
-      bot: true 
+      bot: true,
     });
+    console.log("config done");
   }
-  await dc.startIO();
+  dc.startIO();
   console.log("init done");
 }
 
@@ -55,7 +55,4 @@ setup();
 
 process.on("exit", () => {
   dc.stopIO();
-  dc.close(() => {
-    // clean up, save state or close database connections
-  });
 });
