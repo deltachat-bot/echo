@@ -5,7 +5,7 @@
 run the bot:
 
 ```
-addr=$yourEmail mailpw=$yourPassword cargo run
+addr=$yourEmail mail_pw=$yourPassword cargo run
 ```
 
 ### Documentation

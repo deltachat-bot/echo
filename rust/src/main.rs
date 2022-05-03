@@ -91,12 +91,12 @@ async fn main() {
         } else {
             panic!("no addr ENV var specified");
         }
-        if let Some(pw) = vars().find(|key| key.0 == "mailpw") {
+        if let Some(pw) = vars().find(|key| key.0 == "mail_pw") {
             ctx.set_config(config::Config::MailPw, Some(&pw.1))
                 .await
                 .unwrap();
         } else {
-            panic!("no mailpw ENV var specified");
+            panic!("no mail_pw ENV var specified");
         }
         ctx.set_config(config::Config::Bot, Some("1"))
             .await
