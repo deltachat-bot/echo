@@ -9,8 +9,8 @@
   "author": "DeltaChatBot Contributers <https://github.com/deltachat-bot>",
   "private": true,
   "dependencies": {
-    "@types/node": "^13.7.2",
-    "deltachat-node": "1.45.0",
+    "@types/node": "^16.11.32",
+    "deltachat-node": "^1.79.3",
     "rc": "^1.2.8"
   }
 }

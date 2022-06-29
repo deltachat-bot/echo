@@ -63,24 +63,18 @@ void *event_handler(void *context) {
       }
       dc_str_unref(comment);
 
-    } else if (event_type == DC_EVENT_MSGS_CHANGED) {
-      int chat_id = dc_event_get_data1_int(event);
-      int message_id = dc_event_get_data2_int(event);
-      printf("[msg-changed] %d %d\n", chat_id, message_id);
-
-      dc_msg_t *msg = dc_get_msg(context, message_id);
-
-      if (dc_msg_get_chat_id(msg) == DC_CHAT_ID_DEADDROP) {
-        // check if contact is new / and accept its contact request
-        printf("[BOT] accepting new contact\n");
-        int new_chat_id = dc_decide_on_contact_request(context, message_id,
-                                                       DC_DECISION_START_CHAT);
-        handle_message(context, new_chat_id, message_id);
-      }
-      dc_msg_unref(msg);
     } else if (event_type == DC_EVENT_INCOMING_MSG) {
       int chat_id = dc_event_get_data1_int(event);
       int message_id = dc_event_get_data2_int(event);
+
+      dc_chat_t *chat = dc_get_chat(context, chat_id);
+      if (dc_chat_is_contact_request(chat)) {
+        // check if contact is new / and accept its contact request
+        printf("[BOT] accepting new contact request\n");
+        dc_accept_chat(context, chat_id);
+      }
+      dc_chat_unref(chat);
+
       printf("[incoming-msg] %d %d\n", chat_id, message_id);
       handle_message(context, chat_id, message_id);
     } else {

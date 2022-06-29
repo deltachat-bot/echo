@@ -2,18 +2,22 @@
 
 An echo bot in multiple languages to get you started.
 
-Direct:
+### Direct:
 
-- [C](./c)
-- [node.js](./nodejs)
-- [Python](./python)
-- [Rust](./rust)
+| Language            | core version |
+| ------------------- | ------------ |
+| [C](./c)            | `1.78.0`     |
+| [node.js](./nodejs) | `1.45.0`     |
+| [Python](./python)  | `?`          |
+| [Rust](./rust)      | `1.79.0`     |
 
-With abstraction layer / bot framework:
+### With abstraction layer / bot framework:
 
-- [bot-base (node.js)](./nodejs_bot_base)
-- [deltabot (python)](./python_deltabot_plugin)
-- [simplebot (python)](./python_simplebot_plugin)
+| Language                                        | core version |
+| ----------------------------------------------- | ------------ |
+| [bot-base (node.js)](./nodejs_bot_base)         | `1.27.0`     |
+| [deltabot (python)](./python_deltabot_plugin)   | `?`          |
+| [simplebot (python)](./python_simplebot_plugin) | `?`          |
 
 The bot just echos your text messages when you send them to it as DM.
 
