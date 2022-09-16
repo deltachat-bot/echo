@@ -9,7 +9,7 @@ An echo bot in multiple languages to get you started.
 | [C](./c)            | `1.78.0`     |
 | [node.js](./nodejs) | `1.79.0`     |
 | [Python](./python)  | `?`          |
-| [Rust](./rust)      | `1.79.0`     |
+| [Rust](./rust)      | `1.93.0`     |
 
 ### With abstraction layer / bot framework:
 

@@ -1,16 +1,16 @@
-use async_std::channel;
 use deltachat::contact::ContactId;
 use futures_lite::future::FutureExt;
 use std::env::{current_dir, vars};
 use std::sync::Arc;
+use tokio::signal;
 
-use deltachat::chat::*;
+use anyhow::{Context as _, Result};
 use deltachat::config;
-use deltachat::constants::{Chattype};
+use deltachat::constants::Chattype;
 use deltachat::context::*;
 use deltachat::message::*;
 use deltachat::EventType;
-use anyhow::{Context as _, Result};
+use deltachat::{chat::*, Events};
 
 async fn handle_message(
     ctx: &Context,
@@ -71,13 +71,15 @@ async fn cb(ctx: &Context, event: EventType) {
     }
 }
 
-#[async_std::main]
+#[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    let dbdir = current_dir().context("failed to get current working directory")?.join("deltachat-db");
+    let dbdir = current_dir()
+        .context("failed to get current working directory")?
+        .join("deltachat-db");
     std::fs::create_dir_all(dbdir.clone()).context("failed to create data folder")?;
     let dbfile = dbdir.join("db.sqlite");
     println!("creating database {:?}", dbfile);
-    let ctx = Context::new(dbfile.into(), 0)
+    let ctx = Context::new(dbfile.as_path(), 1, Events::new())
         .await
         .context("Failed to create context")?;
 
@@ -86,10 +88,6 @@ async fn main() -> anyhow::Result<()> {
     let ctx = Arc::new(ctx);
 
     let events = ctx.get_event_emitter();
-
-    let (interrupt_send, interrupt_recv) = channel::bounded(1);
-    ctrlc::set_handler(move || async_std::task::block_on(interrupt_send.send(())).unwrap())
-        .context("Error setting Ctrl-C handler")?;
 
     let is_configured = ctx.get_config_bool(config::Config::Configured).await?;
     if !is_configured {
@@ -126,7 +124,7 @@ async fn main() -> anyhow::Result<()> {
 
     // wait for ctrl+c or event
     while let Some(event) = async {
-        interrupt_recv.recv().await.unwrap();
+        signal::ctrl_c().await.expect("failed to listen for event");
         None
     }
     .race(events.recv())
