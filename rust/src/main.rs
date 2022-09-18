@@ -1,4 +1,3 @@
-use deltachat::contact::ContactId;
 use futures_lite::future::FutureExt;
 use std::env::{current_dir, vars};
 use std::sync::Arc;
@@ -24,10 +23,6 @@ async fn handle_message(
     }
 
     let msg = Message::load_from_db(ctx, msg_id).await?;
-    if msg.get_from_id() == ContactId::SELF {
-        // prevent loop (don't react to own messages)
-        return Ok(());
-    }
 
     println!(
         "recieved message '{}' in chat with type {:?}",
