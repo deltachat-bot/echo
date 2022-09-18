@@ -2,7 +2,7 @@
 
 This example is about creating a plugin for [simplebot](https://github.com/simplebot-org/simplebot),
 a pluggable deltachat bot,
-which is a fork of [deltabot](https://github.com/deltachat-bot/deltabot) and has a [vast ecosystem of plugins](https://github.com/SimpleBot-Inc/simplebot_plugins) already availible and used in production.
+which is a fork of [deltabot](https://github.com/deltachat-bot/deltabot) and has a [vast ecosystem of plugins](https://github.com/simplebot-org) already availible and used in production.
 
 > There are 2 alternative options available:
 >
@@ -26,7 +26,7 @@ pip3 install -U pip wheel
 pip3 install --pre -U -i https://m.devpi.net/dc/master deltachat # if it doesn't work, see https://github.com/deltachat/deltachat-core-rust/tree/master/python for instructions on how to install it from source)
 
 # Install simplebot
-pip3 install https://github.com/simplebot-inc/simplebot/archive/master.zip
+pip3 install https://github.com/simplebot-org/simplebot/archive/master.zip
 # or alternativly pip3 install simplebot
 
 # init the bot (either set the env vars or replace them with the email credentials the bot should use)
@@ -66,6 +66,6 @@ simplebot -a ./.simplebotdata serve
 
 ## References
 
-Also see the source of the existing plugins over at https://github.com/simplebot-org/simplebot_plugins.
+Also see the source of the existing plugins over at https://github.com/simplebot-org/.
 
 > **Tip:** instead of manually registering script by script, simplebot supports registering folders (and also python package folders), ex. `~/my_plugins` then all script you add there will be loaded when the bot starts and you can add new script or remove existing scripts without having to add/remove using these commands
