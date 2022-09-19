@@ -2,7 +2,7 @@
 
 This example is about creating a plugin for [simplebot](https://github.com/simplebot-org/simplebot),
 a pluggable deltachat bot,
-which is a fork of [deltabot](https://github.com/deltachat-bot/deltabot) and has a [vast ecosystem of plugins](https://github.com/simplebot-org) already availible and used in production.
+which is a fork of [deltabot](https://github.com/deltachat-bot/deltabot) and has a [vast ecosystem of plugins](https://pypi.org/search/?q=simplebot&o=&c=Environment+%3A%3A+Plugins) already availible and used in production.
 
 > There are 2 alternative options available:
 >
@@ -22,12 +22,9 @@ virtualenv .venv
 source .venv/bin/activate
 pip3 install -U pip wheel
 
-# install deltachat
-pip3 install --pre -U -i https://m.devpi.net/dc/master deltachat # if it doesn't work, see https://github.com/deltachat/deltachat-core-rust/tree/master/python for instructions on how to install it from source)
-
 # Install simplebot
-pip3 install https://github.com/simplebot-org/simplebot/archive/master.zip
-# or alternativly pip3 install simplebot
+pip3 install simplebot
+# or alternativly: pip3 install git+https://github.com/simplebot-org/simplebot/
 
 # init the bot (either set the env vars or replace them with the email credentials the bot should use)
 simplebot --account ./.simplebotdata init $ADDR "$PASSWORD"
