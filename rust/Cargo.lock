@@ -590,8 +590,8 @@ checksum = "3ee2393c4a91429dffb4bedf19f4d6abf27d8a732c8ce4980305d782e5426d57"
 
 [[package]]
 name = "deltachat"
-version = "1.93.0"
-source = "git+https://github.com/deltachat/deltachat-core-rust?tag=1.93.0#e7957b166121abb9b899c705879b9b4b3716b723"
+version = "1.94.0"
+source = "git+https://github.com/deltachat/deltachat-core-rust?tag=1.94.0#569628a202fb8fa8e9698c7c1311a34f1f0771ec"
 dependencies = [
  "anyhow",
  "async-channel",
@@ -666,7 +666,7 @@ dependencies = [
 [[package]]
 name = "deltachat_derive"
 version = "2.0.0"
-source = "git+https://github.com/deltachat/deltachat-core-rust?tag=1.93.0#e7957b166121abb9b899c705879b9b4b3716b723"
+source = "git+https://github.com/deltachat/deltachat-core-rust?tag=1.94.0#569628a202fb8fa8e9698c7c1311a34f1f0771ec"
 dependencies = [
  "quote",
  "syn",

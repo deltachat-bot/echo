@@ -16,12 +16,7 @@ async fn handle_message(
     chat_id: ChatId,
     msg_id: MsgId,
 ) -> Result<(), anyhow::Error> {
-    let mut chat = Chat::load_from_db(ctx, chat_id).await?;
-    if chat.is_contact_request() {
-        chat_id.accept(ctx).await?;
-        chat = Chat::load_from_db(ctx, chat_id).await?;
-    }
-
+    let chat = Chat::load_from_db(ctx, chat_id).await?;
     let msg = Message::load_from_db(ctx, msg_id).await?;
 
     println!(
