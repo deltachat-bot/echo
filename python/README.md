@@ -15,7 +15,7 @@ source .venv/bin/activate
 pip3 install -U pip wheel
 
 # install deltachat
-pip3 install --pre -U -i https://m.devpi.net/dc/master deltachat # if it doesn't work, see https://github.com/deltachat/deltachat-core-rust/tree/master/python for instructions on how to install it from source)
+pip3 install deltachat # if it doesn't work, see https://github.com/deltachat/deltachat-core-rust/tree/master/python for instructions on how to install it from source
 ```
 
 ## Usage
