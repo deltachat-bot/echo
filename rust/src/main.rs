@@ -21,6 +21,7 @@ use deltachat::config;
 use deltachat::constants::Chattype;
 use deltachat::context::Context;
 use deltachat::message::{Message, MsgId, Viewtype};
+use deltachat::stock_str::StockStrings;
 use deltachat::EventType;
 use deltachat::Events;
 use futures_lite::future::FutureExt;
@@ -84,7 +85,7 @@ async fn main() -> anyhow::Result<()> {
     std::fs::create_dir_all(dbdir.clone()).context("failed to create data folder")?;
     let dbfile = dbdir.join("db.sqlite");
     println!("creating database {:?}", dbfile);
-    let ctx = Context::new(dbfile.as_path(), 1, Events::new())
+    let ctx = Context::new(dbfile.as_path(), 1, Events::new(), StockStrings::new())
         .await
         .context("Failed to create context")?;
 
