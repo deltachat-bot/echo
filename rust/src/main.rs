@@ -1,15 +1,30 @@
-use futures_lite::future::FutureExt;
-use std::env::{current_dir, vars};
+#![forbid(unsafe_code)]
+#![warn(
+    clippy::correctness,
+    missing_debug_implementations,
+    missing_docs,
+    unused,
+    clippy::all,
+    clippy::cast_lossless,
+    clippy::indexing_slicing,
+    clippy::needless_borrow,
+    clippy::unused_async,
+    clippy::wildcard_imports
+)]
+
+use std::env;
 use std::sync::Arc;
-use tokio::signal;
 
 use anyhow::{Context as _, Result};
+use deltachat::chat::{self, Chat, ChatId};
 use deltachat::config;
 use deltachat::constants::Chattype;
-use deltachat::context::*;
-use deltachat::message::*;
+use deltachat::context::Context;
+use deltachat::message::{Message, MsgId, Viewtype};
 use deltachat::EventType;
-use deltachat::{chat::*, Events};
+use deltachat::Events;
+use futures_lite::future::FutureExt;
+use tokio::signal;
 
 async fn handle_message(
     ctx: &Context,
@@ -28,7 +43,7 @@ async fn handle_message(
     if chat.get_type() == Chattype::Single {
         let mut message = Message::new(Viewtype::Text);
         message.set_text(msg.get_text());
-        send_msg(ctx, chat_id, &mut message).await?;
+        chat::send_msg(ctx, chat_id, &mut message).await?;
     }
 
     Ok(())
@@ -63,7 +78,7 @@ async fn cb(ctx: &Context, event: EventType) {
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    let dbdir = current_dir()
+    let dbdir = env::current_dir()
         .context("failed to get current working directory")?
         .join("deltachat-db");
     std::fs::create_dir_all(dbdir.clone()).context("failed to create data folder")?;
@@ -82,14 +97,14 @@ async fn main() -> anyhow::Result<()> {
     let is_configured = ctx.get_config_bool(config::Config::Configured).await?;
     if !is_configured {
         println!("configuring");
-        if let Some(addr) = vars().find(|key| key.0 == "addr") {
+        if let Some(addr) = env::vars().find(|key| key.0 == "addr") {
             ctx.set_config(config::Config::Addr, Some(&addr.1))
                 .await
                 .context("set config failed")?;
         } else {
             panic!("no addr ENV var specified");
         }
-        if let Some(pw) = vars().find(|key| key.0 == "mail_pw") {
+        if let Some(pw) = env::vars().find(|key| key.0 == "mail_pw") {
             ctx.set_config(config::Config::MailPw, Some(&pw.1))
                 .await
                 .context("set config failed")?;
