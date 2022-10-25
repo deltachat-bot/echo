@@ -4,17 +4,18 @@ An echo bot in multiple languages to get you started.
 
 ### Direct:
 
-| Language            | core version |
-| ------------------- | ------------ |
-| [C](./c)            | `1.78.0`     |
-| [node.js](./nodejs) | `1.93.0`     |
-| [Python](./python)  | `1.94.0`     |
-| [Rust](./rust)      | `1.94.0`     |
+| Language                                      | core version |
+| --------------------------------------------- | ------------ |
+| [C](./c)                                      | `1.78.0`     |
+| [node.js over cffi (legacy)](./nodejs_cffi)   | `1.93.0`     |
+| [node.js over jsonrpc](./nodejs_napi_jsonrpc) | `1.98.0`     |
+| [Python](./python)                            | `1.94.0`     |
+| [Rust](./rust)                                | `1.94.0`     |
 
 ### With abstraction layer / bot framework:
 
 | Language                                        | core version               |
-| ----------------------------------------------- | ------------               |
+| ----------------------------------------------- | -------------------------- |
 | [bot-base (node.js)](./nodejs_bot_base)         | `1.27.0`                   |
 | [deltabot (python)](./python_deltabot_plugin)   | `?`                        |
 | [simplebot (python)](./python_simplebot_plugin) | `1.93.0 (simplebot 3.3.0)` |
