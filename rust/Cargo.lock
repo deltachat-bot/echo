@@ -712,7 +712,6 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "deltachat",
- "futures-lite",
  "tokio",
 ]
 
