@@ -1,10 +1,5 @@
 # Echo Bot - Rust
 
-> Warning: the rust API is **unstable** and it is subject to change,
-> use the **cffi api** in the `deltachat_ffi` crate if you want more
-> stability and be careful when updating the core as the api might
-> have been changed.
-
 To run the bot, the first time you need to set the credentials in the
 environment:
 
