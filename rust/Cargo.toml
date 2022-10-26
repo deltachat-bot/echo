@@ -2,12 +2,9 @@
 name = "deltachat-echo-bot"
 version = "0.1.0"
 authors = ["DeltaChatBot Contributers<https://github.com/deltachat-bot>"]
-edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+edition = "2021"
 
 [dependencies]
-deltachat = { git = "https://github.com/deltachat/deltachat-core-rust", tag="1.94.0"}
-tokio = { version = "1", features = ["rt-multi-thread", "macros", "signal"] }
-futures-lite = "1.11.2"
-anyhow = "1"
+anyhow = "1.0.66"
+deltachat = { git = "https://github.com/deltachat/deltachat-core-rust", tag="1.98.0"}
+tokio = { version = "1.21.2", features = ["rt-multi-thread", "macros", "signal"] }
