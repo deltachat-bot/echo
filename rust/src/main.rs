@@ -1,6 +1,6 @@
 //! Echo bot example in Rust.
 //!
-//! This is a bot example which echo's back the text of any message it receives in direct
+//! This is a bot example which echoes back the text of any message it receives in direct
 //! 1:1 chats.  It contains a number of steps:
 //!
 //! - Create the directory for deltachat storage.  Deltachat is statefull and all the state
