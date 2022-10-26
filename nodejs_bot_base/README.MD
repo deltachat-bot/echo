@@ -1,8 +1,8 @@
-> **Info**: [`deltachat-node-bot-base`](https://github.com/deltachat-bot/deltachat-node-bot-base) is **currently unmaintained**, so if you want all newer features you should go with [`deltachat-node`](https://github.com/deltachat/deltachat-node). see [deltachat-node Example](../nodejs)
+> **Info**: [`deltachat-node-bot-base`](https://github.com/deltachat-bot/deltachat-node-bot-base) is **currently unmaintained**, so if you want all newer features you should go with [`@deltachat/napi-jsonrpc`](https://github.com/deltachat/napi-jsonrpc). see [@deltachat/napi-jsonrpc Example](../nodejs_napi_jsonrpc)
 
 # Echo Bot - Nodejs Bot Base
 
-> This is an makes use of [`deltachat-node-bot-base`](https://github.com/deltachat-bot/deltachat-node-bot-base) an abstraction Layer over [`deltachat-node`](https://github.com/deltachat/deltachat-node) which does the initial setup for you. It is opinionated (makes some design decisions for you, like the used config module) -> If you want more control look at our other echo-bot example that uses `deltachat-node` directly: [Advanced Example](../nodejs)
+> This is an makes use of [`deltachat-node-bot-base`](https://github.com/deltachat-bot/deltachat-node-bot-base) an abstraction Layer over [`deltachat-node`](https://github.com/deltachat/deltachat-node) which does the initial setup for you. It is opinionated (makes some design decisions for you, like the used config module) -> If you want more control look at our other echo-bot example that uses `deltachat-node` directly: [Advanced Example](../nodejs_cffi)
 
 ## First Time Setup
 

@@ -1,0 +1,18 @@
+{
+  "name": "deltchat-napi-jsonrpc-echo-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check-typescript-version": "tsc --noEmit --esModuleInterop index_typescript.ts"
+  },
+  "license": "UNLICENSE",
+  "dependencies": {
+    "@deltachat/napi-jsonrpc": "^0.98.1"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^16.11.32",
+    "typescript": "^4.8.4"
+  }
+}

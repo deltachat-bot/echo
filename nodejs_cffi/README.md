@@ -1,4 +1,6 @@
-# Echo Bot - Nodejs
+# Echo Bot - Nodejs over cffi
+
+> INFO: Using `deltachat-node` is deprecated, you should use `@deltachat/napi-jsonrpc` instead: [nodejs napi jsonrpc example](../nodejs_napi_jsonrpc)
 
 > If you are new to programming or node js, you might want to look at our echo example that uses `deltachat-node-bot-base`, an abstraction layer that simplifies the initial bot setup instead: [Simple Example](../nodejs_bot_base)
 

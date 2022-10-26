@@ -13,12 +13,7 @@ const dc = Context.open(path.join(__dirname, "deltachat-db"));
 
 function handleDCMessage(chatid, msgId) {
   const chat = dc.getChat(chatid);
-  console.log(chat.isContactRequest());
   const msg = dc.getMessage(msgId);
-
-  if (chat.isContactRequest()) {
-    dc.acceptChat(chatid);
-  }
 
   // only echo to DM
   if (chat.getType() === C.DC_CHAT_TYPE_SINGLE) {
@@ -42,7 +37,6 @@ async function setup() {
       addr: conf.email_address,
       mail_pw: conf.email_password,
       e2ee_enabled: true,
-      // the bot flag is only respected core version >= 47, but it does not hurt to already add it
       bot: true,
     });
     console.log("config done");
