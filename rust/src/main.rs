@@ -80,11 +80,9 @@ use anyhow::{Context as _, Result};
 use deltachat::chat::{self, Chat, ChatId};
 use deltachat::config::Config;
 use deltachat::constants::Chattype;
-use deltachat::context::Context;
+use deltachat::context::{Context, ContextBuilder};
 use deltachat::message::{Message, MsgId, Viewtype};
-use deltachat::stock_str::StockStrings;
 use deltachat::EventType;
-use deltachat::Events;
 use tokio::signal;
 
 /// Main entry.
@@ -97,7 +95,8 @@ async fn main() -> anyhow::Result<()> {
     std::fs::create_dir_all(dbdir.clone()).context("failed to create data folder")?;
     let dbfile = dbdir.join("db.sqlite");
     println!("creating database {:?}", dbfile);
-    let ctx = Context::new(dbfile.as_path(), 1, Events::new(), StockStrings::new())
+    let ctx = ContextBuilder::new(dbfile)
+        .open()
         .await
         .context("Failed to create context")?;
 

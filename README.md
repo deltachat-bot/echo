@@ -10,7 +10,7 @@ An echo bot in multiple languages to get you started.
 | [node.js over cffi (legacy)](./nodejs_cffi)   | `1.98.0`     |
 | [node.js over jsonrpc](./nodejs_napi_jsonrpc) | `1.98.0`     |
 | [Python](./python)                            | `1.94.0`     |
-| [Rust](./rust)                                | `1.98.0`     |
+| [Rust](./rust)                                | `1.99.0`     |
 
 ### With abstraction layer / bot framework:
 
