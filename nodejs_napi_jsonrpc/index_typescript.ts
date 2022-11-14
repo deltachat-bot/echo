@@ -36,8 +36,9 @@ async function main() {
         );
       }
       await dc.rpc.batchSetConfig(firstAccount.id, {
-        bot: "true",
-        e2ee_enabled: "true",
+        // "true" does not work yet, see https://github.com/deltachat/deltachat-core-rust/issues/3752
+        bot: "1",
+        e2ee_enabled: "1",
       });
       await dc.rpc.configure(firstAccount.id);
     } catch (error) {
