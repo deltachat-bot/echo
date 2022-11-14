@@ -45,6 +45,8 @@ async function main() {
       console.error("Could not log in to account:", error);
       process.exit(1);
     }
+  } else {
+    await dc.rpc.startIo(firstAccount.id);
   }
 
   const botAccountId = firstAccount.id;
