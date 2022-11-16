@@ -7,7 +7,7 @@ An echo bot in multiple languages to get you started.
 | Language                                      | core version |
 | --------------------------------------------- | ------------ |
 | [C](./c)                                      | `1.78.0`     |
-| [node.js over cffi (legacy)](./nodejs_cffi)   | `1.98.0`     |
+| [node.js over cffi (legacy)](./nodejs_cffi)   | `1.101.0`    |
 | [node.js over jsonrpc](./nodejs_napi_jsonrpc) | `1.98.0`     |
 | [Python](./python)                            | `1.94.0`     |
 | [Rust](./rust)                                | `1.99.0`     |
