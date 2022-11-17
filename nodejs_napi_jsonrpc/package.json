@@ -8,7 +8,7 @@
   },
   "license": "UNLICENSE",
   "dependencies": {
-    "@deltachat/napi-jsonrpc": "^0.98.1"
+    "@deltachat/napi-jsonrpc": "^0.101.1"
   },
   "type": "module",
   "devDependencies": {
