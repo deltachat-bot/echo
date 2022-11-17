@@ -67,14 +67,6 @@ void *event_handler(void *context) {
       int chat_id = dc_event_get_data1_int(event);
       int message_id = dc_event_get_data2_int(event);
 
-      dc_chat_t *chat = dc_get_chat(context, chat_id);
-      if (dc_chat_is_contact_request(chat)) {
-        // check if contact is new / and accept its contact request
-        printf("[BOT] accepting new contact request\n");
-        dc_accept_chat(context, chat_id);
-      }
-      dc_chat_unref(chat);
-
       printf("[incoming-msg] %d %d\n", chat_id, message_id);
       handle_message(context, chat_id, message_id);
     } else {
@@ -94,6 +86,11 @@ void stop_context(dc_context_t *context) {
 }
 
 int main() {
+  // this line is just a hacky workaround to ensure we are using a recent core
+  // that already auto accepts contact requests, when bot config variable is set.
+  // basically a core version that includes https://github.com/deltachat/deltachat-core-rust/pull/3567 merged
+  dc_jsonrpc_instance_t* unused;
+  
   char *addr = getenv("addr");
   char *mailpw = getenv("mailpw");
 
@@ -135,6 +132,8 @@ int main() {
     dc_configure(context);
   } else {
     printf("already configured, wait for messages\n");
+    char* addr = dc_get_config (context, "addr");
+    printf("bot address is %s\n", addr);
     dc_start_io(context);
   }
 
