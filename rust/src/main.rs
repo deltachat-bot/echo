@@ -213,7 +213,7 @@ async fn handle_message(ctx: &Context, chat_id: ChatId, msg_id: MsgId) -> Result
     let msg = Message::load_from_db(ctx, msg_id).await?;
 
     println!(
-        "recieved message '{}' in chat with type {:?}",
+        "received message '{}' in chat with type {:?}",
         msg.get_text().unwrap_or_default(),
         chat.get_type()
     );
