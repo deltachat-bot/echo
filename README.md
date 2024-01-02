@@ -4,22 +4,22 @@ An echo bot in multiple languages to get you started.
 
 ### Direct:
 
-| Language                                      | core version |
-| --------------------------------------------- | ------------ |
-| [C](./c)                                      | `1.101.0`    |
-| [Go](./go)                                    | `1.110.0`    |
-| [node.js over cffi (legacy)](./nodejs_cffi)   | `1.101.0`    |
-| [node.js over jsonrpc](./nodejs_napi_jsonrpc) | `1.101.0`    |
-| [Python](./python)                            | `1.94.0`     |
-| [Rust](./rust)                                | `1.101.0`    |
+| Language                                                     | core version |
+| ------------------------------------------------------------ | ------------ |
+| [C](./c)                                                     | `1.101.0`    |
+| [Go](./go)                                                   | `1.110.0`    |
+| [node.js over cffi](./nodejs_cffi)                           | `1.101.0`    |
+| [node.js over jsonrpc](./nodejs_napi_jsonrpc) (unmaintained) | `1.101.0`    |
+| [Python](./python)                                           | `1.94.0`     |
+| [Rust](./rust)                                               | `1.101.0`    |
 
 ### With abstraction layer / bot framework:
 
-| Language                                        | core version               |
-| ----------------------------------------------- | -------------------------- |
-| [bot-base (node.js)](./nodejs_bot_base)         | `1.27.0`                   |
-| [deltabot (python)](./python_deltabot_plugin)   | `?`                        |
-| [simplebot (python)](./python_simplebot_plugin) | `1.93.0 (simplebot 3.3.0)` |
+| Language                                                      | core version               |
+| ------------------------------------------------------------- | -------------------------- |
+| [bot-base (node.js)](./nodejs_bot_base) (unmaintained)        | `1.27.0`                   |
+| [deltabot (python)](./python_deltabot_plugin) (unmaintained?) | `?`                        |
+| [simplebot (python)](./python_simplebot_plugin)               | `1.93.0 (simplebot 3.3.0)` |
 
 The bot just echos your text messages when you send them to it as DM.
 
