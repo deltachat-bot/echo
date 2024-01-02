@@ -1,7 +1,10 @@
 # Python (CFFI)
 
-> There are 2 alternative options available:
+> There are 3 alternative options available:
 >
+> using the newer [jsonrpc based bindings](../python_jsonrpc)
+>
+> frameworks:
 > - [using deltabot](../python_deltabot_plugin) (bot framework, includes features as chat command parsing)
 > - [using simplebot](../python_simplebot_plugin) (simplebot is a maintained fork of deltabot with many plugins availible)
 
@@ -31,5 +34,5 @@ python echo_bot.py /tmp/db --email ADDRESS --password PASSWORD
 
 - all available hooks can be found in https://github.com/deltachat/deltachat-core-rust/blob/master/python/src/deltachat/hookspec.py
 - Python bindings documentation https://py.delta.chat
-- https://py.delta.chat/examples.html
+- https://py.delta.chat/cffi/examples.html
 - source code of python bindings https://github.com/deltachat/deltachat-core-rust/tree/master/python
