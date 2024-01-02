@@ -11,7 +11,7 @@ An echo bot in multiple languages to get you started.
 | [node.js over cffi](./nodejs_cffi)                           | `1.132.1`    |
 | [node.js over jsonrpc](./nodejs_napi_jsonrpc) (unmaintained) | `1.101.0`    |
 | [Python](./python)                                           | `1.94.0`     |
-| [Rust](./rust)                                               | `1.101.0`    |
+| [Rust](./rust)                                               | `1.132.1`    |
 
 ### With abstraction layer / bot framework:
 
