@@ -1,44 +1,57 @@
 package main
 
 import (
+	"context"
 	"log"
 	"os"
 
 	"github.com/deltachat/deltachat-rpc-client-go/deltachat"
+	"github.com/deltachat/deltachat-rpc-client-go/deltachat/transport"
 )
 
-func logEvent(event *deltachat.Event) {
-	log.Printf("%v: %v", event.Type, event.Msg)
+func logEvent(bot *deltachat.Bot, accId deltachat.AccountId, event deltachat.Event) {
+	switch ev := event.(type) {
+	case deltachat.EventInfo:
+		log.Printf("INFO: %v", ev.Msg)
+	case deltachat.EventWarning:
+		log.Printf("WARNING: %v", ev.Msg)
+	case deltachat.EventError:
+		log.Printf("ERROR: %v", ev.Msg)
+	}
 }
 
-func main() {
-	rpc := deltachat.NewRpcIO()
-	defer rpc.Stop()
-	rpc.Start()
 
-	manager := &deltachat.AccountManager{rpc}
-	sysinfo, _ := manager.SystemInfo()
+func runEchoBot(bot *deltachat.Bot, accId deltachat.AccountId) {
+	sysinfo, _ := bot.Rpc.GetSystemInfo()
 	log.Println("Running deltachat core", sysinfo["deltachat_core_version"])
 
-	bot := deltachat.NewBotFromAccountManager(manager)
-	bot.On(deltachat.EVENT_INFO, logEvent)
-	bot.On(deltachat.EVENT_WARNING, logEvent)
-	bot.On(deltachat.EVENT_ERROR, logEvent)
-	bot.OnNewMsg(func(msg *deltachat.Message) {
-		snapshot, _ := msg.Snapshot()
-		chat := deltachat.Chat{bot.Account, snapshot.ChatId}
-		chat.SendText(snapshot.Text)
+	bot.On(deltachat.EventInfo{}, logEvent)
+	bot.On(deltachat.EventWarning{}, logEvent)
+	bot.On(deltachat.EventError{}, logEvent)
+	bot.OnNewMsg(func(bot *deltachat.Bot, accId deltachat.AccountId, msgId deltachat.MsgId) {
+		msg, _ := bot.Rpc.GetMessage(accId, msgId)
+		if msg.FromId > deltachat.ContactLastSpecial {
+			bot.Rpc.MiscSendTextMessage(accId, msg.ChatId, msg.Text)
+		}
 	})
 
-	if !bot.IsConfigured() {
+	if isConf, _ := bot.Rpc.IsConfigured(accId); !isConf {
 		log.Println("Bot not configured, configuring...")
-		err := bot.Configure(os.Args[1], os.Args[2])
+		err := bot.Configure(accId, os.Args[1], os.Args[2])
 		if err != nil {
 			log.Fatalln(err)
 		}
 	}
 
-	addr, _ := bot.GetConfig("addr")
-	log.Println("Listening at:", addr)
-	bot.RunForever()
+	addr, _ := bot.Rpc.GetConfig(accId, "configured_addr")
+	log.Println("Listening at:", addr.Unwrap())
+	bot.Run()
+}
+
+func main() {
+	trans := transport.NewIOTransport()
+	trans.Open()
+	defer trans.Close()
+	rpc := &deltachat.Rpc{Context: context.Background(), Transport: trans}
+	runEchoBot(deltachat.NewBot(rpc), deltachat.GetAccount(rpc))
 }
