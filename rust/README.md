@@ -1,5 +1,10 @@
 # Echo Bot - Rust
 
+##Requirements
+
+- rust
+- perl
+
 To run the bot, the first time you need to set the credentials in the
 environment:
 
