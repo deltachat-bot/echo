@@ -4,7 +4,7 @@
 
 > If you are new to programming or node js, you might want to look at our echo example that uses `deltachat-node-bot-base`, an abstraction layer that simplifies the initial bot setup instead: [Simple Example](../nodejs_bot_base)
 
-you need nodejs version `>=16`.
+you need nodejs version `>=18`.
 
 install dependencies with `npm install`
 

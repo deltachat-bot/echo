@@ -95,7 +95,7 @@ async fn main() -> anyhow::Result<()> {
     std::fs::create_dir_all(dbdir.clone()).context("failed to create data folder")?;
     let dbfile = dbdir.join("db.sqlite");
     println!("creating database {:?}", dbfile);
-    let ctx = ContextBuilder::new(dbfile)
+    let mut ctx = ContextBuilder::new(dbfile)
         .open()
         .await
         .context("Failed to create context")?;
@@ -214,7 +214,7 @@ async fn handle_message(ctx: &Context, chat_id: ChatId, msg_id: MsgId) -> Result
 
     println!(
         "received message '{}' in chat with type {:?}",
-        msg.get_text().unwrap_or_default(),
+        msg.get_text(),
         chat.get_type()
     );
 
