@@ -6,7 +6,7 @@ a pluggable deltachat bot.
 > There are 2 alternative options available:
 >
 > - [using simplebot](../python_simplebot_plugin) (simplebot is a maintained fork of deltabot with many plugins availible)
-> - [using python directly](../python) (more controll, but also more code to take care of)
+> - [using python directly](../python_cffi) (more controll, but also more code to take care of)
 
 ## Usage
 

@@ -7,7 +7,7 @@ which is a fork of [deltabot](https://github.com/deltachat-bot/deltabot) and has
 > There are 2 alternative options available:
 >
 > - [using deltabot](../python_deltabot_plugin) (similar to simplebot, but less plugins)
-> - [using python directly](../python) (more control, but also more code to take care of)
+> - [using python directly](../python_cffi) (more control, but also more code to take care of)
 
 ## Usage
 
