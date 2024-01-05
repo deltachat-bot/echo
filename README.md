@@ -6,7 +6,7 @@ An echo bot in multiple languages to get you started.
 
 | Language                                                     | core version |
 | ------------------------------------------------------------ | ------------ |
-| [C](./c)                                                     | `1.101.0`    |
+| [C](./c)                                                     | `1.132.1`    |
 | [Go](./go)                                                   | `1.110.0`    |
 | [node.js over cffi](./nodejs_cffi)                           | `1.101.0`    |
 | [node.js over jsonrpc](./nodejs_napi_jsonrpc) (unmaintained) | `1.101.0`    |
