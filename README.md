@@ -18,9 +18,10 @@ An echo bot in multiple languages to get you started.
 
 | Language                                                      | core version               |
 | ------------------------------------------------------------- | -------------------------- |
-| [bot-base (node.js)](./nodejs_bot_base) (unmaintained)        | `1.27.0`                   |
-| [deltabot (python)](./python_deltabot_plugin) (unmaintained?) | `?`                        |
+| [deltabot-cli Python](./python_deltabot_cli)                  | `v1.131.4`                 |
 | [simplebot (python)](./python_simplebot_plugin)               | `1.93.0 (simplebot 3.3.0)` |
+| [deltabot (python)](./python_deltabot_plugin) (unmaintained?) | `?`                        |
+| [bot-base (node.js)](./nodejs_bot_base) (unmaintained)        | `1.27.0`                   |
 
 The bot just echos your text messages when you send them to it as DM.
 
