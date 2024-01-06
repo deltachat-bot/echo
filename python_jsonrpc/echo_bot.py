@@ -27,17 +27,8 @@ def main():
             logging.info("Configured")
         else:
             logging.info("Account is already configured")
-            deltachat.start_io()
 
-        def process_messages():
-            for message in account.get_next_messages():
-                snapshot = message.get_snapshot()
-                if snapshot.from_id != SpecialContactId.SELF and not snapshot.is_bot and not snapshot.is_info:
-                    snapshot.chat.send_text(snapshot.text)
-                snapshot.message.mark_seen()
-
-        # Process old messages.
-        process_messages()
+        deltachat.start_io()
 
         while True:
             event = account.wait_for_event()
@@ -48,8 +39,9 @@ def main():
             elif event["kind"] == EventType.ERROR:
                 logging.error("%s", event["msg"])
             elif event["kind"] == EventType.INCOMING_MSG:
-                logging.info("Got an incoming message")
-                process_messages()
+                snapshot = account.get_message_by_id(event["msg_id"]).get_snapshot()
+                if snapshot.from_id != SpecialContactId.SELF and not snapshot.is_bot and not snapshot.is_info:
+                    snapshot.chat.send_text(snapshot.text)
 
 
 if __name__ == "__main__":
