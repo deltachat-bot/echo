@@ -1,6 +1,6 @@
 # Python (CFFI)
 
-> There are 3 alternative options available:
+> There are alternative options available:
 >
 > using the newer [jsonrpc based bindings](../python_jsonrpc)
 >
