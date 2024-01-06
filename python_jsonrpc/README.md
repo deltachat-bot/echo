@@ -1,12 +1,13 @@
 # Python (CFFI)
 
-> There are 3 alternative options available:
+> There are alternative options available:
 >
 > using the older legacy [cffi based bindings](../python_cffi)
 >
 > frameworks:
 > - [using deltabot](../python_deltabot_plugin) (bot framework, includes features as chat command parsing)
 > - [using simplebot](../python_simplebot_plugin) (simplebot is a maintained fork of deltabot with many plugins availible)
+> - [using deltabot-cli](../python_deltabot_cli)
 
 ## Installation
 
