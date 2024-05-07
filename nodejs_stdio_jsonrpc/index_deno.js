@@ -1,7 +1,8 @@
 //@ts-check
 
-import { startDeltaChat } from "@deltachat/stdio-rpc-server";
+import { startDeltaChat } from "https://raw.githubusercontent.com/deltachat/deltachat-core-rust/simon/stdio-jsonrpc-server-npm-package/deltachat-rpc-server/npm-package/index.js";
 import { C } from "@deltachat/jsonrpc-client";
+import process from 'node:process'
 
 async function main() {
   const dc = await startDeltaChat("deltachat-data");

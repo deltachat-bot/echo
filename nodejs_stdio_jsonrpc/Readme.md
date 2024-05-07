@@ -55,4 +55,26 @@ CHATMAIL_QR=dcaccount:https://nine.testrun.org/new node .
 - Sourcecode of the jsonrpc client: https://github.com/deltachat/deltachat-core-rust/blob/master/deltachat-jsonrpc/typescript/
 - Sourcecode of the deltachat-rpc-server to javascript bindings: https://github.com/deltachat/deltachat-core-rust/blob/master/deltachat-rpc-server/npm-package
 
+### Experimental: Usage with deno instead of node:
 
+Deno (https://deno.com/) is an alternative to nodejs that is better than nodejs in some areas,
+such as typescript support out of the box, good default tooling, and a strict focus on security through it's permission system.
+
+For deno the native prebuilds in the npm package do not work (they do not get installed / found),
+so you need to install `deltachat-rpc-server` yourself to `$PATH` with:
+```sh
+cargo install --git https://github.com/deltachat/deltachat-core-rust deltachat-rpc-server
+```
+Or you download it from the releases page on https://github.com/deltachat/deltachat-core-rust/releases/
+and point to it with the `DELTA_CHAT_RPC_SERVER` environment variable:
+```sh
+# make it executable
+chmod +x ./deltachat-rpc-server-aarch64-macos
+# set the `DELTA_CHAT_RPC_SERVER` environment variable
+export DELTA_CHAT_RPC_SERVER=./deltachat-rpc-server-aarch64-macos
+```
+
+run `index_deno.js`:
+```sh
+CHATMAIL_QR=dcaccount:https://nine.testrun.org/new deno run --allow-env --allow-read --allow-run=deltachat-rpc-server index_deno.js 
+```
