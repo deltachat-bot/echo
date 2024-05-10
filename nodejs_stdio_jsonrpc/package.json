@@ -12,6 +12,6 @@
   "license": "Unlicense",
   "dependencies": {
     "@deltachat/jsonrpc-client": "^1.137.4",
-    "@deltachat/stdio-rpc-server": "file:../../deltachat-core-rust/deltachat-rpc-server/npm-package"
+    "@deltachat/stdio-rpc-server": "^1.137.4"
   }
 }
