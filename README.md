@@ -10,7 +10,7 @@ An echo bot in multiple languages to get you started.
 | [Go](./go)                                                        | `1.127.0` (jsonrpc, newer core might work too, last tested with `v1.131.4` ) |
 | [node.js over cffi napi](./nodejs_cffi)                           | `1.132.1`                                                                    |
 | [node.js over jsonrpc napi](./nodejs_napi_jsonrpc) (unmaintained) | `1.101.0`                                                                    |
-| [node.js over jsonrpc stdio](./nodejs_stdio_jsonrpc)              | `1.137.4`                                                                    |
+| [node.js over jsonrpc stdio](./nodejs_stdio_jsonrpc)              | `1.139.2`                                                                    |
 | [Python over cffi](./python_cffi)                                 | `1.132.1`                                                                    |
 | [Python over jsonrpc](./python_jsonrpc)                           | `1.132.1`                                                                    |
 | [Rust](./rust)                                                    | `1.132.1`                                                                    |
