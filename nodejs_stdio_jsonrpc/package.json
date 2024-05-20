@@ -1,0 +1,17 @@
+{
+  "name": "nodejs_stdio_jsonrpc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Unlicense",
+  "dependencies": {
+    "@deltachat/jsonrpc-client": "^1.137.4",
+    "@deltachat/stdio-rpc-server": "^1.137.4"
+  }
+}

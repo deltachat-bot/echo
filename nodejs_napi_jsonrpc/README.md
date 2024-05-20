@@ -1,4 +1,4 @@
-# Echo Bot - Nodejs over jsonrpc api
+# Echo Bot - Nodejs over jsonrpc api over napi-rs
 
 jsonrpc is the new way to speak with our core library, it is faster (both to use and to develop) and returns better errors than the cffi.
 
