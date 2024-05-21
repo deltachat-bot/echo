@@ -4,7 +4,7 @@ import { startDeltaChat } from "@deltachat/stdio-rpc-server";
 import { C } from "@deltachat/jsonrpc-client";
 
 async function main() {
-  const dc = await startDeltaChat("deltachat-data", { skipSearchInPath: true });
+  const dc = await startDeltaChat("deltachat-data");
   console.log("Using deltachat-rpc-server at " + dc.pathToServerBinary);
 
   // log all events to console
