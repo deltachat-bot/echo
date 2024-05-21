@@ -72,13 +72,13 @@ async function main() {
   const verificationQRCode = (
     await dc.rpc.getChatSecurejoinQrCodeSvg(botAccountId, null)
   )[0];
-  console.info("".padEnd(40, "="))
+  console.info("".padEnd(40, "="));
   console.info("The email address of your bot is: ", botAddress);
   console.info(`Verify Bot contact (if you use chatmail this is nessesary to contact the bot from outside the chatmail instance that the bot uses):
 copy this code and \"scan\" it with delta chat:
 
 ${verificationQRCode}`);
-console.info("".padEnd(40, "="))
+  console.info("".padEnd(40, "="));
 }
 
 main();
