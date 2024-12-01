@@ -1,0 +1,108 @@
+{
+  "version": "4",
+  "specifiers": {
+    "npm:@deltachat/jsonrpc-client@^1.151.3": "1.151.3",
+    "npm:@deltachat/stdio-rpc-server@^1.151.3": "1.151.3_@deltachat+jsonrpc-client@1.151.3"
+  },
+  "npm": {
+    "@deltachat/jsonrpc-client@1.151.3": {
+      "integrity": "sha512-a6bDSs1sMDPParj21SyciOb5jKcGKzJIIn6O9OYJXBS0gbHFaaMlnzBWLfILbDwIDem2T7DzvAzTtQNb5UkncA==",
+      "dependencies": [
+        "@deltachat/tiny-emitter",
+        "isomorphic-ws",
+        "yerpc"
+      ]
+    },
+    "@deltachat/stdio-rpc-server-android-arm64@1.151.3": {
+      "integrity": "sha512-c0ma7M2tT7xUIC5BKbGLBgOSuqNuwVgB5CMVDJVBPUdP8uL2cX2P2671DFg/fYjBaLdLPnDNrdvMQKko72qCEQ=="
+    },
+    "@deltachat/stdio-rpc-server-android-arm@1.151.3": {
+      "integrity": "sha512-lFtbasIL6zHIF6mOgBa9WbcsDpGZtewJnJqoSmRT6VENyT/NbIOLms4s5VtgWMoKaAsp5RA3UgXWTwSL7EwUYQ=="
+    },
+    "@deltachat/stdio-rpc-server-darwin-arm64@1.151.3": {
+      "integrity": "sha512-MiQqgWg+tpiL1is+jthYqsxuxgS9W4hpDDYU9FLlfjyb177E5fne9bkPmGslYgO+wyIaRbGNQlcJNxkeA/HUsA=="
+    },
+    "@deltachat/stdio-rpc-server-darwin-x64@1.151.3": {
+      "integrity": "sha512-vd/BnGAvbjSInmT1ihGRSyWLV7tHHbz/PdN4j9+xMhqPZy6sbvnWZyEqpFx3sjCXPNlt7QXRs7NM6GZhh6t7uA=="
+    },
+    "@deltachat/stdio-rpc-server-linux-arm64@1.151.3": {
+      "integrity": "sha512-gGwVV2ntm1R1lK4CAHznsdwRKZkKcdn1xtxfrVy/0UTOqAWr3fFsoL6S+QnP0JVKM3ea1AXtVMXeWXNJ7oL2fQ=="
+    },
+    "@deltachat/stdio-rpc-server-linux-arm@1.151.3": {
+      "integrity": "sha512-7kJLd919br6NAjXbMPoRi0UbGQqL4yZmmx0LYBR6pHgp7VakIQj62kJLYqy02xqnPqVDfuO7UAoTpOAJ+pPcWw=="
+    },
+    "@deltachat/stdio-rpc-server-linux-ia32@1.151.3": {
+      "integrity": "sha512-zgSvxpWm/b4pebf4sBK7SDoAOhhR7bJplMeFJ63JT9/DldWsV6Hrmo+RQkowNrew8d7C7ZjiYoDvgP7r+kQe2A=="
+    },
+    "@deltachat/stdio-rpc-server-linux-x64@1.151.3": {
+      "integrity": "sha512-EzK8nT1cy4WMnvGOApU4IWNVLqYzqyQsqQy6HRMBsNtVEVGecbWDTaCGMZu2B1e4WQJMWHE8mUZySo9tpweMPw=="
+    },
+    "@deltachat/stdio-rpc-server-win32-ia32@1.151.3": {
+      "integrity": "sha512-uAP+hjmKmWi9JvTILUkncCaIV7qQHdEFoNj0wa4NV5+CJq5CYbjr1SKwSqnxxhKUUfOhBSa/7z2NZ0e0QvPB0g=="
+    },
+    "@deltachat/stdio-rpc-server-win32-x64@1.151.3": {
+      "integrity": "sha512-iwDTHfmr1koCYSHl+/eo8ot3itQa/3kQn7c/n1ErQpL+MjhLZSYobonwsWcPzKczkSGIOncUnQOe125Qz+Coqg=="
+    },
+    "@deltachat/stdio-rpc-server@1.151.3_@deltachat+jsonrpc-client@1.151.3": {
+      "integrity": "sha512-nWrjHVbObZWp8sGKd9gIsm7i6qUsK00VgoNQMkeB8ZtA7vHjtxS98LzBYjo9EknUn9ZBsHKiCf/PGJKmfgi9OQ==",
+      "dependencies": [
+        "@deltachat/jsonrpc-client",
+        "@deltachat/stdio-rpc-server-android-arm",
+        "@deltachat/stdio-rpc-server-android-arm64",
+        "@deltachat/stdio-rpc-server-darwin-arm64",
+        "@deltachat/stdio-rpc-server-darwin-x64",
+        "@deltachat/stdio-rpc-server-linux-arm",
+        "@deltachat/stdio-rpc-server-linux-arm64",
+        "@deltachat/stdio-rpc-server-linux-ia32",
+        "@deltachat/stdio-rpc-server-linux-x64",
+        "@deltachat/stdio-rpc-server-win32-ia32",
+        "@deltachat/stdio-rpc-server-win32-x64"
+      ]
+    },
+    "@deltachat/tiny-emitter@3.0.0": {
+      "integrity": "sha512-iapvwGCEWFjXtObQ/vNzXS0+M9hrZrY2tMdV7SaX8kHXKVm3oIuJUVmUj5jhABTL7GstO6uKzV+36FUZVGOqCA=="
+    },
+    "@types/node@22.5.4": {
+      "integrity": "sha512-FDuKUJQm/ju9fT/SeX/6+gBzoPzlVCzfzmGkwKvRHQVxi4BntVbyIwf6a4Xn62mrvndLiml6z/UBXIdEVjQLXg==",
+      "dependencies": [
+        "undici-types"
+      ]
+    },
+    "@types/ws@8.5.13": {
+      "integrity": "sha512-osM/gWBTPKgHV8XkTunnegTRIsvF6owmf5w+JtAfOw472dptdm0dlGv4xCt6GwQRcC2XVOvvRE/0bAoQcL2QkA==",
+      "dependencies": [
+        "@types/node"
+      ]
+    },
+    "isomorphic-ws@4.0.1_ws@8.18.0": {
+      "integrity": "sha512-BhBvN2MBpWTaSHdWRb/bwdZJ1WaehQ2L1KngkCkfLUGF0mAWAT1sQUQacEmQ0jXkFw/czDXPNQSL5u2/Krsz1w==",
+      "dependencies": [
+        "ws"
+      ]
+    },
+    "typescript@4.9.5": {
+      "integrity": "sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g=="
+    },
+    "undici-types@6.19.8": {
+      "integrity": "sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw=="
+    },
+    "ws@8.18.0": {
+      "integrity": "sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw=="
+    },
+    "yerpc@0.6.2_ws@8.18.0": {
+      "integrity": "sha512-w+lggouyGD7Tq/BVrxB2LWBNiNexpM2Nx4x8cHx31EGcHAl+sUlmFodDJaw5M/QkCbQcLPUyP46ei8tpfWnSDg==",
+      "dependencies": [
+        "@types/ws",
+        "isomorphic-ws",
+        "typescript",
+        "ws"
+      ]
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "npm:@deltachat/jsonrpc-client@^1.151.3",
+      "npm:@deltachat/stdio-rpc-server@^1.151.3"
+    ]
+  }
+}
