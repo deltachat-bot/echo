@@ -2,7 +2,6 @@
 
 import { startDeltaChat } from "@deltachat/stdio-rpc-server";
 import { C } from "@deltachat/jsonrpc-client";
-import process from "node:process";
 
 async function main() {
   const dc = await startDeltaChat("deltachat-data");
@@ -12,17 +11,14 @@ async function main() {
   // dc.on("ALL", console.debug.bind("[core]"));
 
   // or only log what you want
-  dc.on(
-    "Info",
-    (accountId, { msg }) => console.info(accountId, "[core:info]", msg),
+  dc.on("Info", (accountId, { msg }) =>
+    console.info(accountId, "[core:info]", msg)
   );
-  dc.on(
-    "Warning",
-    (accountId, { msg }) => console.warn(accountId, "[core:warn]", msg),
+  dc.on("Warning", (accountId, { msg }) =>
+    console.warn(accountId, "[core:warn]", msg)
   );
-  dc.on(
-    "Error",
-    (accountId, { msg }) => console.error(accountId, "[core:error]", msg),
+  dc.on("Error", (accountId, { msg }) =>
+    console.error(accountId, "[core:error]", msg)
   );
 
   let firstAccount = (await dc.rpc.getAllAccounts())[0];
@@ -32,16 +28,19 @@ async function main() {
   if (firstAccount.kind === "Unconfigured") {
     console.info("account not configured, trying to login now...");
     try {
-      if (!!process.env.ADDR && !!process.env.MAIL_PW) {
+      const addr = Deno.env.get("ADDR");
+      const mail_pw = Deno.env.get("MAIL_PW");
+      const chatmail_qr = Deno.env.get("CHATMAIL_QR");
+      if (addr && mail_pw) {
         await dc.rpc.batchSetConfig(firstAccount.id, {
-          addr: process.env.ADDR,
-          mail_pw: process.env.MAIL_PW,
+          addr,
+          mail_pw,
         });
-      } else if (!!process.env.CHATMAIL_QR) {
-        await dc.rpc.setConfigFromQr(firstAccount.id, process.env.CHATMAIL_QR);
+      } else if (chatmail_qr) {
+        await dc.rpc.setConfigFromQr(firstAccount.id, chatmail_qr);
       } else {
         throw new Error(
-          "Credentials missing, you need to set ADDR and MAIL_PW",
+          "Credentials missing, you need to set ADDR and MAIL_PW, or CHATMAIL_QR"
         );
       }
       await dc.rpc.batchSetConfig(firstAccount.id, {
@@ -51,7 +50,7 @@ async function main() {
       await dc.rpc.configure(firstAccount.id);
     } catch (error) {
       console.error("Could not log in to account:", error);
-      process.exit(1);
+      Deno.exit(1);
     }
   } else {
     await dc.rpc.startIo(firstAccount.id);
@@ -67,7 +66,7 @@ async function main() {
       await dc.rpc.miscSendTextMessage(
         botAccountId,
         chatId,
-        message.text || "",
+        message.text || ""
       );
     }
   });
@@ -82,7 +81,7 @@ async function main() {
     `Verify Bot contact (if you use chatmail this is nessesary to contact the bot from outside the chatmail instance that the bot uses):
 copy this code and \"scan\" it with delta chat:
 
-${verificationQRCode}`,
+${verificationQRCode}`
   );
   console.info("".padEnd(40, "="));
 }
