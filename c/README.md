@@ -15,6 +15,7 @@
 - a C compiler that allows for passing the linker flag `-Wl,-rpath`, e.g., `gcc`
 - GNU `make`
 - optionally, `pkg-config`
+- CMake
 - a Rust tool suite for *DeltaChat Core Rust*
 - an installed `libdeltachat.{a.so}` from the *Core*, with:
 
