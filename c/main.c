@@ -106,7 +106,7 @@ void handle_message (int32_t chat_id, int32_t message_id) {
   }
   if (message_id < 0) {
     snprintf(thread_buffer80, MAXLOGGER,
-      "message_id < 0, %d, cannot be sent to dc_get_chat", message_id);
+      "message_id < 0, %d, cannot be sent to dc_get_msg", message_id);
     logit(WARN, thread_buffer80);
     return;
   }
