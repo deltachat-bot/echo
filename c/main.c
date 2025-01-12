@@ -239,6 +239,7 @@ int main() {
   if (loglim) {
     log_level = strtol(loglim, 0, 10);
     snprintf(main_buffer80, MAXLOGGER, "setting log limit to %ld", log_level);
+    logit(INFO, main_buffer80);
   }
 
   // clean exit signal handlers
