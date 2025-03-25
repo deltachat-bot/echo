@@ -1,9 +1,9 @@
 {
   "tasks": {
-    "start": "deno run --allow-env --allow-read --allow-run index.js"
+    "start": "deno run --allow-env --allow-read --allow-run index.ts"
   },
   "imports": {
-    "@deltachat/jsonrpc-client": "npm:@deltachat/jsonrpc-client@^1.151.3",
-    "@deltachat/stdio-rpc-server": "npm:@deltachat/stdio-rpc-server@^1.151.3"
+    "@deltachat/jsonrpc-client": "npm:@deltachat/jsonrpc-client@^1.152.1",
+    "@deltachat/stdio-rpc-server": "npm:@deltachat/stdio-rpc-server@^1.152.1"
   }
 }

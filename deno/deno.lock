@@ -1,50 +1,50 @@
 {
   "version": "4",
   "specifiers": {
-    "npm:@deltachat/jsonrpc-client@^1.151.3": "1.151.3",
-    "npm:@deltachat/stdio-rpc-server@^1.151.3": "1.151.3_@deltachat+jsonrpc-client@1.151.3"
+    "npm:@deltachat/jsonrpc-client@^1.152.1": "1.152.1",
+    "npm:@deltachat/stdio-rpc-server@^1.152.1": "1.152.1_@deltachat+jsonrpc-client@1.152.1"
   },
   "npm": {
-    "@deltachat/jsonrpc-client@1.151.3": {
-      "integrity": "sha512-a6bDSs1sMDPParj21SyciOb5jKcGKzJIIn6O9OYJXBS0gbHFaaMlnzBWLfILbDwIDem2T7DzvAzTtQNb5UkncA==",
+    "@deltachat/jsonrpc-client@1.152.1": {
+      "integrity": "sha512-f6G4DFoZ22awZI6m8UXvWngHYzARWLXRYpOjVbxQjlsI+2EJ4hrIOSQ10R+jlN4fCzEHwdJ5OMdeWOdtjgLrqA==",
       "dependencies": [
         "@deltachat/tiny-emitter",
         "isomorphic-ws",
         "yerpc"
       ]
     },
-    "@deltachat/stdio-rpc-server-android-arm64@1.151.3": {
-      "integrity": "sha512-c0ma7M2tT7xUIC5BKbGLBgOSuqNuwVgB5CMVDJVBPUdP8uL2cX2P2671DFg/fYjBaLdLPnDNrdvMQKko72qCEQ=="
+    "@deltachat/stdio-rpc-server-android-arm64@1.152.1": {
+      "integrity": "sha512-huhDnupQqMsRoHre7y4EX10qxGn0Wb/3AqDrBDbEo9k4PzuonucUmWVgAi8Raara0Qd+YPfJPTOnLQNzGIxhKg=="
     },
-    "@deltachat/stdio-rpc-server-android-arm@1.151.3": {
-      "integrity": "sha512-lFtbasIL6zHIF6mOgBa9WbcsDpGZtewJnJqoSmRT6VENyT/NbIOLms4s5VtgWMoKaAsp5RA3UgXWTwSL7EwUYQ=="
+    "@deltachat/stdio-rpc-server-android-arm@1.152.1": {
+      "integrity": "sha512-5XYWSePXFyb2I75KxotBuXNpkqTsJf5mw+FzkgRdJESFRq3xo47smWJG9EKHPRHTflwpI3JJ6Cq9X9fiuc0z5Q=="
     },
-    "@deltachat/stdio-rpc-server-darwin-arm64@1.151.3": {
-      "integrity": "sha512-MiQqgWg+tpiL1is+jthYqsxuxgS9W4hpDDYU9FLlfjyb177E5fne9bkPmGslYgO+wyIaRbGNQlcJNxkeA/HUsA=="
+    "@deltachat/stdio-rpc-server-darwin-arm64@1.152.1": {
+      "integrity": "sha512-fiz0umcXEFjZHeYoJg4B/FO7R91OKRHv/bX949uUkKxGCCNOa0MSqYiYyMAil3e/NB3BfaGf7rktF8rq3hHH/w=="
     },
-    "@deltachat/stdio-rpc-server-darwin-x64@1.151.3": {
-      "integrity": "sha512-vd/BnGAvbjSInmT1ihGRSyWLV7tHHbz/PdN4j9+xMhqPZy6sbvnWZyEqpFx3sjCXPNlt7QXRs7NM6GZhh6t7uA=="
+    "@deltachat/stdio-rpc-server-darwin-x64@1.152.1": {
+      "integrity": "sha512-d/AWpokeh9t0NlV3AIx/GyHrZkxzbFzyJomfp3+TluGM3/whC8mEKT+In8mkAGm+v6QeH7GAF7dTehhIr8Vnrg=="
     },
-    "@deltachat/stdio-rpc-server-linux-arm64@1.151.3": {
-      "integrity": "sha512-gGwVV2ntm1R1lK4CAHznsdwRKZkKcdn1xtxfrVy/0UTOqAWr3fFsoL6S+QnP0JVKM3ea1AXtVMXeWXNJ7oL2fQ=="
+    "@deltachat/stdio-rpc-server-linux-arm64@1.152.1": {
+      "integrity": "sha512-byY6Z8G9WXT4GYdlKMoKd17vMkqF3qu1P8fenz0SiyCAt3fb1SVMSNGQek/vjJZPD2aUMTCwsajF7yjGAsGVvA=="
     },
-    "@deltachat/stdio-rpc-server-linux-arm@1.151.3": {
-      "integrity": "sha512-7kJLd919br6NAjXbMPoRi0UbGQqL4yZmmx0LYBR6pHgp7VakIQj62kJLYqy02xqnPqVDfuO7UAoTpOAJ+pPcWw=="
+    "@deltachat/stdio-rpc-server-linux-arm@1.152.1": {
+      "integrity": "sha512-Gdo9iQ/qI4Bw88aUw+wNPpFg1rJbxOjKzqQOHPvPv5afB+XgqcVilMrOcb5gNAN93cM/vik2q0l680s3GrhR4A=="
     },
-    "@deltachat/stdio-rpc-server-linux-ia32@1.151.3": {
-      "integrity": "sha512-zgSvxpWm/b4pebf4sBK7SDoAOhhR7bJplMeFJ63JT9/DldWsV6Hrmo+RQkowNrew8d7C7ZjiYoDvgP7r+kQe2A=="
+    "@deltachat/stdio-rpc-server-linux-ia32@1.152.1": {
+      "integrity": "sha512-Kpj6YB3yPy3hv3TQR/Qq3fE6KUJMMfnJ3hbrO7nmktfFfANcLHNKAI1B4o7lQn3mE7Kb01nUM1njam5QYl0MCQ=="
     },
-    "@deltachat/stdio-rpc-server-linux-x64@1.151.3": {
-      "integrity": "sha512-EzK8nT1cy4WMnvGOApU4IWNVLqYzqyQsqQy6HRMBsNtVEVGecbWDTaCGMZu2B1e4WQJMWHE8mUZySo9tpweMPw=="
+    "@deltachat/stdio-rpc-server-linux-x64@1.152.1": {
+      "integrity": "sha512-gHnI7erXpOqIrtRhL17WmhIltXgem8O2NCz2Td5mhSLxAYIj5Z8K/Ublf/AFOBJCx5rWlg475ASrHjpKtuEQOA=="
     },
-    "@deltachat/stdio-rpc-server-win32-ia32@1.151.3": {
-      "integrity": "sha512-uAP+hjmKmWi9JvTILUkncCaIV7qQHdEFoNj0wa4NV5+CJq5CYbjr1SKwSqnxxhKUUfOhBSa/7z2NZ0e0QvPB0g=="
+    "@deltachat/stdio-rpc-server-win32-ia32@1.152.1": {
+      "integrity": "sha512-bRpm2rqQtc7aqcT62jaUNjCcQ031AqWe+lrRhjNN8eN9cNyYTZryK+lvzhpMZHH639HkbN6FJ4uoa8pzNI1NUQ=="
     },
-    "@deltachat/stdio-rpc-server-win32-x64@1.151.3": {
-      "integrity": "sha512-iwDTHfmr1koCYSHl+/eo8ot3itQa/3kQn7c/n1ErQpL+MjhLZSYobonwsWcPzKczkSGIOncUnQOe125Qz+Coqg=="
+    "@deltachat/stdio-rpc-server-win32-x64@1.152.1": {
+      "integrity": "sha512-cq+5LRd/qlcHZevleMvHcdEQUeUjY5LnESDqpsGVn1AZDa5XzxSk5p5ocBEmkNnOD63qhLfl+5nWfBySgAOABA=="
     },
-    "@deltachat/stdio-rpc-server@1.151.3_@deltachat+jsonrpc-client@1.151.3": {
-      "integrity": "sha512-nWrjHVbObZWp8sGKd9gIsm7i6qUsK00VgoNQMkeB8ZtA7vHjtxS98LzBYjo9EknUn9ZBsHKiCf/PGJKmfgi9OQ==",
+    "@deltachat/stdio-rpc-server@1.152.1_@deltachat+jsonrpc-client@1.152.1": {
+      "integrity": "sha512-cBfiVV5wvyLF054wYinjvg+iFGssbiqkRra6OmP+eiS08NfYC8ZtiLko29nV4R7BCX8ERb4YG6IE/wSvyZRq4g==",
       "dependencies": [
         "@deltachat/jsonrpc-client",
         "@deltachat/stdio-rpc-server-android-arm",
@@ -101,8 +101,8 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:@deltachat/jsonrpc-client@^1.151.3",
-      "npm:@deltachat/stdio-rpc-server@^1.151.3"
+      "npm:@deltachat/jsonrpc-client@^1.152.1",
+      "npm:@deltachat/stdio-rpc-server@^1.152.1"
     ]
   }
 }
