@@ -12,7 +12,15 @@ Process childProcess = Process.Start(new ProcessStartInfo("deltachat-rpc-server"
     RedirectStandardOutput = true,
 });
 
-JsonRpc rpc = new JsonRpc(new StreamJsonRpc.NewLineDelimitedMessageHandler(childProcess.StandardInput.BaseStream, childProcess.StandardOutput.BaseStream, new StreamJsonRpc.SystemTextJsonFormatter()));
+var formatter = new StreamJsonRpc.SystemTextJsonFormatter();
+
+// "kind" property does not have to be the first.
+// Otherwise messages like
+// `{"jsonrpc":"2.0","id":18,"result":{"contextId":1,"event":{"comment":null,"kind":"ConfigureProgress","progress":1}}}`
+// don't parse because `comment` goes before `kind`.
+formatter.JsonSerializerOptions.AllowOutOfOrderMetadataProperties = true;
+
+JsonRpc rpc = new JsonRpc(new StreamJsonRpc.NewLineDelimitedMessageHandler(childProcess.StandardInput.BaseStream, childProcess.StandardOutput.BaseStream, formatter));
 rpc.StartListening();
 
 var accounts = await rpc.InvokeAsync<int[]>("get_all_account_ids");
