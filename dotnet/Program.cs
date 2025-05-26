@@ -12,7 +12,7 @@ Process childProcess = Process.Start(new ProcessStartInfo("deltachat-rpc-server"
     RedirectStandardOutput = true,
 });
 
-JsonRpc rpc = new JsonRpc(new StreamJsonRpc.NewLineDelimitedMessageHandler(childProcess.StandardInput.BaseStream, childProcess.StandardOutput.BaseStream, new StreamJsonRpc.JsonMessageFormatter()));
+JsonRpc rpc = new JsonRpc(new StreamJsonRpc.NewLineDelimitedMessageHandler(childProcess.StandardInput.BaseStream, childProcess.StandardOutput.BaseStream, new StreamJsonRpc.SystemTextJsonFormatter()));
 rpc.StartListening();
 
 var accounts = await rpc.InvokeAsync<int[]>("get_all_account_ids");
@@ -30,16 +30,6 @@ foreach(var item in res)
   Console.WriteLine("{0}={1}", item.Key, item.Value);
 }
 
-// Test that deserialization works.
-// Somehow it does not work with JSON-RPC, all events end up as parent EventType class.
-string jsonString = "{\"contextId\":1,\"event\":{\"kind\":\"Info\",\"msg\":\"src/imap.rs:553: No new emails in folder \\\"INBOX\\\".\"}}";
-var eventResponse = JsonSerializer.Deserialize<Event>(jsonString);
-if (eventResponse.@event is InfoEventType infoEvent) {
-    Console.WriteLine($"It works, info event deserialized: {infoEvent.msg}");
-} else {
-    Console.WriteLine("Deserialization failed.");
-}
-
 bool isConfigured = await rpc.InvokeAsync<bool>("is_configured", accountId);
 if(!isConfigured) {
   Console.WriteLine("not configured");
@@ -50,9 +40,12 @@ if(!isConfigured) {
 await rpc.InvokeAsync("start_io_for_all_accounts");
 
 while(true) {
-  Event res2 = await rpc.InvokeAsync<Event>("get_next_event");
-  Console.WriteLine($"Got event {res2.contextId} {res2.@event}");
-  Console.WriteLine($"Got event {res2}");
+  Event eventResponse = await rpc.InvokeAsync<Event>("get_next_event");
+  if (eventResponse.@event is InfoEventType infoEvent) {
+    Console.WriteLine($"INFO: {infoEvent.msg}");
+  } else {
+    Console.WriteLine($"Got event {eventResponse}");
+  }
 }
 
 public class Event {
@@ -60,7 +53,7 @@ public class Event {
   public EventType @event { get; set; }
 }
 
-[JsonPolymorphic(TypeDiscriminatorPropertyName = "kind")]
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "kind", IgnoreUnrecognizedTypeDiscriminators = true)]
 [JsonDerivedType(typeof(InfoEventType), typeDiscriminator: "Info")]
 public class EventType {
 }
