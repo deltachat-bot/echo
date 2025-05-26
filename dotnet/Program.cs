@@ -35,7 +35,7 @@ var res = await rpc.InvokeAsync<Dictionary<String, String>>("get_system_info");
 
 foreach(var item in res)
 {
-  Console.WriteLine("{0}={1}", item.Key, item.Value);
+  Console.WriteLine($"{item.Key}={item.Value}");
 }
 
 bool isConfigured = await rpc.InvokeAsync<bool>("is_configured", accountId);
