@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using StreamJsonRpc;
+using System.Buffers;
 
 Process childProcess = Process.Start(new ProcessStartInfo("deltachat-rpc-server")
 {
@@ -27,6 +30,16 @@ foreach(var item in res)
   Console.WriteLine("{0}={1}", item.Key, item.Value);
 }
 
+// Test that deserialization works.
+// Somehow it does not work with JSON-RPC, all events end up as parent EventType class.
+string jsonString = "{\"contextId\":1,\"event\":{\"kind\":\"Info\",\"msg\":\"src/imap.rs:553: No new emails in folder \\\"INBOX\\\".\"}}";
+var eventResponse = JsonSerializer.Deserialize<Event>(jsonString);
+if (eventResponse.@event is InfoEventType infoEvent) {
+    Console.WriteLine($"It works, info event deserialized: {infoEvent.msg}");
+} else {
+    Console.WriteLine("Deserialization failed.");
+}
+
 bool isConfigured = await rpc.InvokeAsync<bool>("is_configured", accountId);
 if(!isConfigured) {
   Console.WriteLine("not configured");
@@ -38,14 +51,20 @@ await rpc.InvokeAsync("start_io_for_all_accounts");
 
 while(true) {
   Event res2 = await rpc.InvokeAsync<Event>("get_next_event");
-  Console.WriteLine("Got event {0} {1}", res2.contextId, res2.@event.kind);
+  Console.WriteLine($"Got event {res2.contextId} {res2.@event}");
+  Console.WriteLine($"Got event {res2}");
 }
 
 public class Event {
-  public int contextId;
-  public EventType @event;
+  public int contextId { get; set; }
+  public EventType @event { get; set; }
 }
 
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "kind")]
+[JsonDerivedType(typeof(InfoEventType), typeDiscriminator: "Info")]
 public class EventType {
-  public string kind;
+}
+
+public class InfoEventType : EventType {
+  public string msg { get; set; }
 }
