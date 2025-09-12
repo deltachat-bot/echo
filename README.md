@@ -19,7 +19,6 @@ An echo bot in multiple languages to get you started.
 | ------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [deltabot-cli Go](./go_deltabot_cli)                          | `1.127.0` (jsonrpc, newer core might work too, last tested with `v1.131.4` ) |
 | [deltabot-cli Python](./python_deltabot_cli)                  | `v1.131.4`                                                                   |
-| [simplebot (python)](./python_simplebot_plugin)               | `1.93.0 (simplebot 3.3.0)`                                                   |
 
 The bot just echos your text messages when you send them to it as DM.
 
