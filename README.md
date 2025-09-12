@@ -10,7 +10,7 @@ An echo bot in multiple languages to get you started.
 | [Go](./go)                                                        | `1.127.0` (jsonrpc, newer core might work too, last tested with `v1.131.4` ) |
 | [Node.js](./nodejs_stdio_jsonrpc)                                 | `1.139.3`                                                                    |
 | [Deno](./deno)                                                    | `1.152.1`                                                                        |
-| [Python over jsonrpc](./python_jsonrpc)                           | `1.132.1`                                                                    |
+| [Python](./python)                                                | `1.132.1`                                                                    |
 | [Rust](./rust)                                                    | `1.132.1`                                                                    |
 
 ### With abstraction layer / bot framework:
