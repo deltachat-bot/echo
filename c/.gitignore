@@ -1,3 +1,6 @@
 main
 deltachat-db
 .clangd
+deltachat_c_echo_bot
+*.db
+*.db-blobs
