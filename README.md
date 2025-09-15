@@ -1,33 +1,44 @@
 # echo
 
-An echo bot in multiple languages to get you started.
+A Delta Chat echo bot in multiple languages to get you started.
+The bot just echos back any text message you send to it.
 
-### Direct:
+### High-level bot frameworks (recommended)
 
-| Language                          | core version                                                                 |
-|-----------------------------------|------------------------------------------------------------------------------|
-| [C](./c)                          | `1.132.1`                                                                    |
-| [Go](./go)                        | `1.127.0` (jsonrpc, newer core might work too, last tested with `v1.131.4` ) |
-| [Node.js](./nodejs_stdio_jsonrpc) | `1.139.3`                                                                    |
-| [Deno](./deno)                    | `1.152.1`                                                                    |
-| [Python](./python)                | `1.132.1`                                                                    |
-| [Rust](./rust)                    | `1.132.1`                                                                    |
+The easiest and fastest way of creating bots is using high-level
+bot frameworks that provide a lot of the repetitive boilerplate
+and functionality most bots need and let you focus on the new
+bot logic.
 
-### With abstraction layer / bot framework:
 
-| Language                                     | core version                                                                 |
-|----------------------------------------------|------------------------------------------------------------------------------|
-| [deltabot-cli Go](./go_deltabot_cli)         | `1.127.0` (jsonrpc, newer core might work too, last tested with `v1.131.4` ) |
-| [deltabot-cli Python](./python_deltabot_cli) | `v2.14.0`                                                                    |
-|                                              |                                                                              |
+| Language                                     | core version |
+|----------------------------------------------|--------------|
+| [deltabot-cli Go](./go_deltabot_cli)         | `1.127.0`    |
+| [deltabot-cli Python](./python_deltabot_cli) | `v2.14.0`    |
+|                                              |              |
 
-The bot just echos your text messages when you send them to it as DM.
+### Low-level libraries (advanced)
+
+Most of the time the high-level bot frameworks are what you want,
+but if you need more fine-control and flexibility you can use the
+following low-level libraries:
+
+| Language                          | core version |
+|-----------------------------------|--------------|
+| [C](./c)                          | `1.132.1`    |
+| [Go](./go)                        | `1.127.0`    |
+| [Node.js](./nodejs_stdio_jsonrpc) | `1.139.3`    |
+| [Deno](./deno)                    | `1.152.1`    |
+| [Python](./python)                | `1.132.1`    |
+| [Rust](./rust)                    | `1.132.1`    |
 
 ## Further resources
 
-- Introduction page to deltachat bots https://bots.delta.chat/
-- Ask questions and showcase your bots on the bots category in our forum https://support.delta.chat/c/bots/9
+- Introduction page to Delta Chat bots: https://bots.delta.chat/
+- Ask questions and showcase your bots on the bots category in
+  our forum: https://support.delta.chat/c/bots/9
 
 ### Questions
 
-If you got any questions reach out to us: https://bots.delta.chat/contact.html
+If you got any questions reach out to us:
+https://bots.delta.chat/contact.html
