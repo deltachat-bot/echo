@@ -1,22 +1,22 @@
 #!/usr/bin/env python3
 """Minimal echo-bot example."""
 
-import logging
-
-from deltabot_cli import BotCli, events
+from deltabot_cli import BotCli
+from deltachat2 import MsgData, events
 
 cli = BotCli("echobot")
 
 
 @cli.on(events.RawEvent)
-def log_event(event):
-    logging.info(event)
+def log_event(bot, accid, event):
+    bot.logger.debug(f"[acc={accid}] {event}")
 
 
 @cli.on(events.NewMessage)
-def echo(event):
-    msg = event.message_snapshot
-    msg.chat.send_text(msg.text)
+def echo(bot, accid, event):
+    msg = event.msg
+    reply = MsgData(text=msg.text)
+    bot.rpc.send_msg(accid, msg.chat_id, reply)
 
 
 if __name__ == "__main__":

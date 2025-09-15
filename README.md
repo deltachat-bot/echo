@@ -15,10 +15,11 @@ An echo bot in multiple languages to get you started.
 
 ### With abstraction layer / bot framework:
 
-| Language                                                      | core version                                                                 |
-| ------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [deltabot-cli Go](./go_deltabot_cli)                          | `1.127.0` (jsonrpc, newer core might work too, last tested with `v1.131.4` ) |
-| [deltabot-cli Python](./python_deltabot_cli)                  | `v1.131.4`                                                                   |
+| Language                                     | core version                                                                 |
+|----------------------------------------------|------------------------------------------------------------------------------|
+| [deltabot-cli Go](./go_deltabot_cli)         | `1.127.0` (jsonrpc, newer core might work too, last tested with `v1.131.4` ) |
+| [deltabot-cli Python](./python_deltabot_cli) | `v2.14.0`                                                                    |
+|                                              |                                                                              |
 
 The bot just echos your text messages when you send them to it as DM.
 
