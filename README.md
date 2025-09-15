@@ -13,8 +13,8 @@ bot logic.
 
 | Language                                     | core version |
 |----------------------------------------------|--------------|
-| [deltabot-cli Go](./go_deltabot_cli)         | `1.127.0`    |
-| [deltabot-cli Python](./python_deltabot_cli) | `v2.14.0`    |
+| [deltabot-cli Go](./go_deltabot_cli)         | `2.14.0`     |
+| [deltabot-cli Python](./python_deltabot_cli) | `2.14.0`     |
 |                                              |              |
 
 ### Low-level libraries (advanced)

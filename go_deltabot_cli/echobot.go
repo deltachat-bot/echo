@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/deltachat-bot/deltabot-cli-go/botcli"
-	"github.com/deltachat/deltachat-rpc-client-go/deltachat"
+	"github.com/chatmail/rpc-client-go/deltachat"
 	"github.com/spf13/cobra"
 )
 
