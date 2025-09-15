@@ -16,14 +16,8 @@ This example is about creating a bot with the bot framework [deltabot-cli-go](ht
 ### Installing deltachat-rpc-server
 
 For the bot to work, first `deltachat-rpc-server` program needs to
-be installed and available in your `PATH`. To install it from source run:
-
-```sh
-cargo install --git https://github.com/deltachat/deltachat-core-rust/ deltachat-rpc-server
-```
-
-For more info and pre-built binaries check:
-https://github.com/deltachat/deltachat-core-rust/tree/master/deltachat-rpc-server
+be installed and available in your `PATH`. For installation instructions check:
+https://github.com/chatmail/core/tree/main/deltachat-rpc-server
 
 #### Install
 
@@ -38,6 +32,14 @@ go run ./echobot.go init address@example.com password
 ```
 
 ### Start
+
+First get the bot's invite link so you can get in contact with it:
+
+```sh
+go run ./echobot.go link
+```
+
+Then start the bot so it can process your contact request and messages:
 
 ```sh
 go run ./echobot.go serve

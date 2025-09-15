@@ -21,9 +21,6 @@ pip install virtualenv
 virtualenv .venv
 source .venv/bin/activate
 
-# install rpc server
-pip install deltachat-rpc-server
-
 pip install deltabot-cli-py
 ```
 
@@ -36,6 +33,20 @@ python ./echobot.py init address@example.com password
 
 ### Start
 
+First get the bot's invite link so you can get in contact with it:
+
+```sh
+python ./echobot.py link
+```
+
+Then start the bot so it can process your contact request and messages:
+
 ```sh
 python ./echobot.py serve
+```
+
+To start in debugging mode and see all the detailed events:
+
+```sh
+python ./echobot.py --loggin=debug serve
 ```
