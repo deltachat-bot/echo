@@ -33,6 +33,14 @@ go run ./echobot.go init address@example.com password
 
 ### Start
 
+First get the bot's invite link so you can get in contact with it:
+
+```sh
+go run ./echobot.go link
+```
+
+Then start the bot so it can process your contact request and messages:
+
 ```sh
 go run ./echobot.go serve
 ```
