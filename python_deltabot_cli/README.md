@@ -21,7 +21,7 @@ pip install virtualenv
 virtualenv .venv
 source .venv/bin/activate
 
-pip install deltabot-cli-py
+pip install deltabot-cli
 ```
 
 #### Configure
