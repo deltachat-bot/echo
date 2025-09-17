@@ -27,8 +27,12 @@ pip install deltabot-cli
 #### Configure
 
 ```sh
-python ./echobot.py init address@example.com password
+python ./echobot.py init DCACCOUNT:https://nine.testrun.org/new
 ```
+
+**TIP:** We will be using nine.testrun.org chatmail relay,
+you can register a new account in many other existing
+[chatmail relays](https://chatmail.at/relays)
 
 
 ### Start
