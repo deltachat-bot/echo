@@ -25,7 +25,6 @@ following low-level libraries:
 
 | Language                          | core version |
 |-----------------------------------|--------------|
-| [C](./c)                          | `1.132.1`    |
 | [Go](./go)                        | `1.127.0`    |
 | [Node.js](./nodejs_stdio_jsonrpc) | `1.139.3`    |
 | [Deno](./deno)                    | `1.152.1`    |
