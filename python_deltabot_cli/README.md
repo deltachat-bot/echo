@@ -52,5 +52,5 @@ python ./echobot.py serve
 To start in debugging mode and see all the detailed events:
 
 ```sh
-python ./echobot.py --loggin=debug serve
+python ./echobot.py --logging=debug serve
 ```
