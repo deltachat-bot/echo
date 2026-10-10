@@ -42,7 +42,6 @@ async function main() {
       }
       await dc.rpc.batchSetConfig(firstAccount.id, {
         bot: "1",
-        e2ee_enabled: "1",
       });
       await dc.rpc.configure(firstAccount.id);
     } catch (error) {
